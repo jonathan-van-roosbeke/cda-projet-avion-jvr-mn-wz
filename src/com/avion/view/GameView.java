@@ -2,12 +2,14 @@ package com.avion.view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.Dimension;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import com.avion.constante.Constante;
+import com.avion.model.Spacecraft;
 
 public class GameView extends JFrame {
 
@@ -31,6 +33,11 @@ public class GameView extends JFrame {
 		jBottom.setBackground(Color.RED);
 		add(jBottom, "South");
 		jBottom.setPreferredSize(new Dimension(Constante.WIDTH, 40));
+
+		Container c = getContentPane();
+		Spacecraft spacecraft = new Spacecraft();
+		c.add(spacecraft);
+
 		setVisible(true);
 	}
 
