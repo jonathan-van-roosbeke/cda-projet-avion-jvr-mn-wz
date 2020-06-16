@@ -12,6 +12,6 @@ public abstract class AnimatedPictures {
 			"resources/images/explosion/explosion_08.png", };
 
 	public static String[] tReacteur = { "resources/images/reacteur/reacteur_01.png",
-			"resources/images/reacteur/reacteur_02.png" };
+			"resources/images/reacteur/reacteur_02.png", "resources/images/reacteur/reacteur_03.gif" };
 
 }
