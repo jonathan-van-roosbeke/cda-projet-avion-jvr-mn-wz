@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import com.avion.constante.Constante;
+import com.avion.dialog.WelcomeDialog;
 
 public class GameView extends JFrame {
 
@@ -16,6 +17,7 @@ public class GameView extends JFrame {
 	}
 
 	public void init() {
+		new WelcomeDialog();
 		setBounds(Constante.CENTER_SCREEN, 0, Constante.WIDTH, Constante.HEIGHT);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLayout(new BorderLayout());

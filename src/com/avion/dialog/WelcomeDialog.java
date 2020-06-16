@@ -1,16 +1,11 @@
 package com.avion.dialog;
 
-import javax.swing.JFrame;
+import javax.swing.JDialog;
 
-public class WelcomeDialog extends JFrame {
+public class WelcomeDialog extends JDialog {
 
 	public WelcomeDialog() {
-		setSize(200, 200);
-		setVisible(true);
-
-	}
-
-	public static void main(String[] args) {
-		new WelcomeDialog();
+		this.setSize(200, 200);
+		this.setVisible(true);
 	}
 }
