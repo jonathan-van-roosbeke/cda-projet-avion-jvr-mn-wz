@@ -21,14 +21,20 @@ public class GameView extends JFrame {
 		setLayout(new BorderLayout());
 		JPanel jLeft = new JPanel();
 		JPanel jRight = new JPanel();
-		JPanel jTop = new JPanel();
 		JPanel jBottom = new JPanel();
-		jTop.setBackground(Color.BLUE);
-		add(jTop, "North");
-		jTop.setPreferredSize(new Dimension(Constante.WIDTH, 40));
+
+		// JPanel jTop = new JPanel();
+		GuiInfo guiInfo = new GuiInfo();
+		add(guiInfo, "North");
+		guiInfo.setPreferredSize(new Dimension(Constante.WIDTH, 60));
+
 		jBottom.setBackground(Color.RED);
 		add(jBottom, "South");
 		jBottom.setPreferredSize(new Dimension(Constante.WIDTH, 40));
 		setVisible(true);
+	}
+
+	public static void main(String[] args) {
+		new GameView();
 	}
 }
