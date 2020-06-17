@@ -1,11 +1,30 @@
 package com.avion.meteorite;
 
 import com.avion.constante.NoAnimatedPictures;
-import com.avion.model.Position;
 
-public class MeteoriteZigzag extends MeteoriteDeFeu {
+public class MeteoriteZigzag extends Meteorite {
 
-	public MeteoriteZigzag(Position position, NoAnimatedPictures image) {
-		super(position, image);
+	public MeteoriteZigzag() {
+		super(NoAnimatedPictures.METEOR_ZIGZAG);
+	}
+
+	@Override
+	public int getVitesse() {
+		return 50;
+	}
+
+	@Override
+	public int getTaille() {
+		return 70;
+	}
+
+	@Override
+	public int getDegat() {
+		return 0;
+	}
+
+	@Override
+	public int getValeur() {
+		return 0;
 	}
 }

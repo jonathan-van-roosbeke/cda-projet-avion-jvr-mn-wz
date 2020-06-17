@@ -1,11 +1,29 @@
 package com.avion.meteorite;
 
 import com.avion.constante.NoAnimatedPictures;
-import com.avion.model.Position;
 
-public class MeteoriteDeFeu extends MeteoriteSimple {
+public class MeteoriteDeFeu extends Meteorite {
+	public MeteoriteDeFeu() {
+		super(NoAnimatedPictures.METEOR_FEUX);
+	}
 
-	public MeteoriteDeFeu(Position position, NoAnimatedPictures imageURl) {
-		super(position);
+	@Override
+	public int getVitesse() {
+		return 50;
+	}
+
+	@Override
+	public int getTaille() {
+		return 100;
+	}
+
+	@Override
+	public int getDegat() {
+		return 0;
+	}
+
+	@Override
+	public int getValeur() {
+		return 0;
 	}
 }

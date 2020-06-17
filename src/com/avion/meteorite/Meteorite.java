@@ -1,68 +1,42 @@
 package com.avion.meteorite;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 import com.avion.constante.NoAnimatedPictures;
-import com.avion.model.Position;
 import com.avion.outils.MakeImage;
 
-public class Meteorite extends JPanel {
-	private Position position;
+public abstract class Meteorite extends JLabel {
 	private ImageIcon image;
-	private int vitesse;
-	private int degat;
-	private int taille;
-	private int valeurPoint;
+//	private int vitesse;
+//	private int degat;
+//	protected int taille;
+//	private int valeurPoint;
+	private static Meteorite[] m = { new MeteoriteSimple(), new MeteoriteDeFeu(), new MeteoriteZigzag(),
+			new MeteoriteDeGlace(), new MeteoriteIceberg() };
+	public static List<Meteorite> meteorites = new ArrayList<>(Arrays.asList(m));
 
-	public Meteorite(Position position, NoAnimatedPictures imageUrl, int vitesse, int degat, int taille,
-			int valeurPoint) {
-		JPanel p = new JPanel();
-		this.position = position;
-		System.out.println(this.position.getX());
+	public Meteorite(NoAnimatedPictures imageUrl) {
 		this.image = new ImageIcon(MakeImage.getTheImage(imageUrl));
 		this.image = MakeImage.getScaledImage(image.getImage(), 100, 100);
-		this.vitesse = vitesse;
-		this.degat = degat;
-		this.taille = taille;
-		this.valeurPoint = valeurPoint;
-
-		setLayout(null);
-		setLocation(0, 0);
-		add(new JLabel(this.image));
-
-		p.setVisible(true);
-		p.add(this);
+//		this.vitesse = getVitesse();
+//		this.degat = getDegat();
+//		this.taille = getTaille();
+//		this.valeurPoint = getValeur();
+		this.image = MakeImage.getScaledImage(new ImageIcon(imageUrl.getUrl()).getImage(), getTaille(), getTaille());
+		this.setIcon(this.image);
+		this.setSize(100, 100);
 	}
 
-	public Position getPosition() {
-		return position;
-	}
+	public abstract int getDegat();
 
-	public void setPosition(int x, int y) {
-		this.position.setX(x);
-		this.position.setY(y);
-	}
+	public abstract int getTaille();
 
-	public int getDegat() {
-		return degat;
-	}
+	public abstract int getValeur();
 
-	public int getTaille() {
-		return taille;
-	}
-
-	public int getValeurPoint() {
-		return valeurPoint;
-	}
-
-	public ImageIcon getImage() {
-		return image;
-	}
-
-	public int getVitesse() {
-		return vitesse;
-	}
-
+	public abstract int getVitesse();
 }
