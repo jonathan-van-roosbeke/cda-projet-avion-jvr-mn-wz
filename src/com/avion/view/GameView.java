@@ -23,15 +23,15 @@ public class GameView extends JFrame {
 		setLayout(new BorderLayout());
 		setResizable(false);
 
-		// ScrollingBackground background = new ScrollingBackground();
-		// getContentPane().add(background);
-
 		GuiInfo guiInfo = new GuiInfo();
 		GuiClavier clavier = new GuiClavier();
-		SpaceGame spacegame = new SpaceGame(clavier);
+		SpaceGame spacegame = new SpaceGame();
 		Controller controller = new Controller(clavier, spacegame.getVaisseau());
 
 		guiInfo.setPreferredSize(new Dimension(Constante.WIDTH, 60));
+
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setVisible(true);
 
 		this.getContentPane().add(guiInfo, BorderLayout.NORTH);
 		this.getContentPane().add(spacegame, BorderLayout.CENTER);

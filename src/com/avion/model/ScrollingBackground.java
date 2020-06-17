@@ -1,11 +1,12 @@
 package com.avion.model;
 
-import java.awt.Canvas;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
-public class ScrollingBackground extends Canvas implements Runnable {
+import javax.swing.JLabel;
+
+public class ScrollingBackground extends JLabel implements Runnable {
 
 	// Two copies of the background image to scroll
 	private Background backOne;
@@ -43,14 +44,11 @@ public class ScrollingBackground extends Canvas implements Runnable {
 		if (back == null)
 			back = (BufferedImage) (createImage(getWidth(), getHeight()));
 
-		// Create a buffer to draw to
 		Graphics buffer = back.createGraphics();
 
-		// Put the two copies of the background image onto the buffer
 		backOne.draw(buffer);
 		backTwo.draw(buffer);
 
-		// Draw the image onto the window
 		twoD.drawImage(back, null, 0, 0);
 	}
 }
