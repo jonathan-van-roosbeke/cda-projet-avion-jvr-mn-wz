@@ -26,7 +26,7 @@ public class GuiClavier extends JPanel {
 	private BufferedImage flecheOff;
 	private BufferedImage flecheOn;
 
-	GuiClavier() {
+	public GuiClavier() {
 		initGuiClavier();
 	}
 
@@ -75,7 +75,7 @@ public class GuiClavier extends JPanel {
 		}
 
 		this.setLayout(new GridLayout(1, 4));
-		this.setPreferredSize(new Dimension(Constante.WIDTH, 150));
+		this.setPreferredSize(new Dimension(Constante.WIDTH, Constante.HEIGHT_CLAVIER));
 	}
 
 	public void initBouton(JPanel pPanel, String pUrl) {
