@@ -4,10 +4,11 @@ import java.awt.Color;
 
 import javax.swing.JPanel;
 
-public class Spacecraft extends JPanel {
+public class MeteoritePanel extends JPanel {
 
-	public Spacecraft() {
-		this.setBackground(Color.LIGHT_GRAY);
+	public MeteoritePanel() {
+		this.setBackground(Color.BLACK);
 		this.setSize(50, 50);
 	}
+
 }

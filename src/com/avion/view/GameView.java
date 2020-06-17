@@ -1,16 +1,11 @@
 package com.avion.view;
 
 import java.awt.BorderLayout;
-import java.awt.Container;
-import java.awt.Dimension;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 import com.avion.constante.Constante;
-import com.avion.controleur.Controller;
-import com.avion.model.ScrollingBackground;
-import com.avion.model.Spacecraft;
+import com.avion.model.SpaceGame;
 
 public class GameView extends JFrame {
 
@@ -19,26 +14,30 @@ public class GameView extends JFrame {
 	}
 
 	public void init() {
-		setBounds(Constante.CENTER_SCREEN, 0, Constante.WIDTH, Constante.HEIGHT);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		// setBounds(Constante.CENTER_SCREEN, 0, Constante.WIDTH, Constante.HEIGHT);
+		this.setSize(Constante.WIDTH, Constante.HEIGHT);
+		this.setLocation(900, 20);
+		this.setTitle("avion");
 		setLayout(new BorderLayout());
-		JPanel jBottom = new JPanel();
+		// setResizable(false);
 
-		GuiInfo guiInfo = new GuiInfo();
-		GuiClavier guiClavier = new GuiClavier();
-		Controller controller = new Controller(guiClavier);
-		ScrollingBackground background = new ScrollingBackground();
-		addKeyListener(controller);
-		getContentPane().add(background);
-		add(guiInfo, "North");
-		guiInfo.setPreferredSize(new Dimension(Constante.WIDTH, 60));
+		// Controller controller = new Controller(guiClavier);
+		// ScrollingBackground background = new ScrollingBackground();
+		// addKeyListener(controller);
+		// getContentPane().add(background);
+		// add(guiInfo, "North");
+		// guiInfo.setPreferredSize(new Dimension(Constante.WIDTH, 60));
 
-		Spacecraft spacecraft = new Spacecraft();
-		Container c = getContentPane();
-		c.add(spacecraft);
+		this.getContentPane().add(new GuiInfo(), BorderLayout.NORTH);
+		this.getContentPane().add(new SpaceGame(), BorderLayout.CENTER);
+		this.getContentPane().add(new GuiClavier(), BorderLayout.SOUTH);
 
-		add(guiClavier, "South");
+		// add(guiClavier, "South");
 		setVisible(true);
 	}
 
+//	public static void main(String[] args) {
+//		new GameView();
+//	}
 }
