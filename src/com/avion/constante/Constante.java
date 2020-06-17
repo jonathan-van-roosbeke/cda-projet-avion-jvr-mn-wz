@@ -22,4 +22,16 @@ public class Constante {
 	public static final int VAISSEAU_HEIGHT = 66;
 
 	public static final int HEIGHT_CLAVIER = 130;
+
+	public enum DIRECTION {
+		UP, RIGHT, DOWN, LEFT, UP_RIGHT, DOWN_RIGHT, UP_LEFT, DOWN_LEFT
+	}
+
+	public enum HORIZONTAL {
+		LEFT, RIGHT
+	}
+
+	public enum VERTICAL {
+		UP, DOWN
+	}
 }
