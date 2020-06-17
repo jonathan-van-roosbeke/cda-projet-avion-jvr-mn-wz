@@ -5,26 +5,32 @@ import com.avion.constante.NoAnimatedPictures;
 public class MeteoriteZigzag extends Meteorite {
 
 	public MeteoriteZigzag() {
-		super(NoAnimatedPictures.METEOR_ZIGZAG);
+		super();
 	}
 
 	@Override
 	public int getVitesse() {
-		return 50;
+		return Properties.METEORITE_ZIGZAG.getVitesse();
 	}
 
 	@Override
 	public int getTaille() {
-		return 70;
+		return Properties.METEORITE_ZIGZAG.getTaille();
 	}
 
 	@Override
 	public int getDegat() {
-		return 0;
+		return Properties.METEORITE_ZIGZAG.getDegat();
 	}
 
 	@Override
 	public int getValeur() {
-		return 0;
+		return Properties.METEORITE_ZIGZAG.getValeur();
+
+	}
+
+	@Override
+	public NoAnimatedPictures getImageUrl() {
+		return NoAnimatedPictures.METEOR_ZIGZAG;
 	}
 }

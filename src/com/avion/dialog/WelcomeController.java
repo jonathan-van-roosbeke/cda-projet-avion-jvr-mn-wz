@@ -15,6 +15,7 @@ public class WelcomeController extends MouseAdapter {
 	private JTextField saisie;
 	private JLabel error;
 	private String date;
+	private static String name;
 
 	public WelcomeController(JTextField saisie, JLabel error) {
 		this.error = error;
@@ -26,6 +27,7 @@ public class WelcomeController extends MouseAdapter {
 		if (saisie.getText() != null && WelcomeModel.canPlay(saisie.getText())) {
 			SwingUtilities.getWindowAncestor(((JLabel) e.getSource()).getParent()).dispose();
 			Outils.writeFile(saisie.getText() + ";");
+			name = saisie.getText();
 			date = Outils.getDate();
 			new GameView();
 		} else {
@@ -36,6 +38,10 @@ public class WelcomeController extends MouseAdapter {
 
 	public String getDate() {
 		return date;
+	}
+
+	public static String getName() {
+		return name;
 	}
 
 }

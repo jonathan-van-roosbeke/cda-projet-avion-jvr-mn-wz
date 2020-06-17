@@ -5,26 +5,32 @@ import com.avion.constante.NoAnimatedPictures;
 public class MeteoriteIceberg extends Meteorite {
 
 	public MeteoriteIceberg() {
-		super(NoAnimatedPictures.METEOR_ICEBERG);
+		super();
 	}
 
 	@Override
 	public int getVitesse() {
-		return 100;
+		return Properties.METEORITE_ICEBERG.getVitesse();
 	}
 
 	@Override
 	public int getTaille() {
-		return 100;
+		return Properties.METEORITE_ICEBERG.getTaille();
 	}
 
 	@Override
 	public int getDegat() {
-		return 0;
+		return Properties.METEORITE_ICEBERG.getDegat();
 	}
 
 	@Override
 	public int getValeur() {
-		return 0;
+		return Properties.METEORITE_ICEBERG.getValeur();
+	}
+
+	@Override
+	public NoAnimatedPictures getImageUrl() {
+		// TODO Auto-generated method stub
+		return NoAnimatedPictures.METEOR_ICEBERG;
 	}
 }

@@ -6,27 +6,32 @@ public class MeteoriteDeGlace extends Meteorite {
 	private static int taille = 100;
 
 	public MeteoriteDeGlace() {
-		super(NoAnimatedPictures.METEOR_GLACE);
+		super();
 	}
 
 	@Override
 	public int getVitesse() {
-		return 100;
+		return Properties.METEORITE_DE_GLACE.getVitesse();
 	}
 
 	@Override
 	public int getDegat() {
-		return 0;
+		return Properties.METEORITE_DE_GLACE.getDegat();
 	}
 
 	@Override
 	public int getTaille() {
-		return 80;
+		return Properties.METEORITE_DE_GLACE.getTaille();
 	}
 
 	@Override
 	public int getValeur() {
-		return 0;
+		return Properties.METEORITE_DE_GLACE.getValeur();
+	}
+
+	@Override
+	public NoAnimatedPictures getImageUrl() {
+		return NoAnimatedPictures.METEOR_GLACE;
 	}
 
 }
