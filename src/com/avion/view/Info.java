@@ -34,23 +34,5 @@ public class Info extends JPanel {
 				break;
 			}
 		}
-
-//		JLabel nom = new JLabel();
-//		nom.setForeground(new Color(242, 242, 242));
-//		nom.setText("Name : ");
-//		nom.setHorizontalAlignment(SwingConstants.CENTER);
-//		this.add(nom);
-//
-//		JLabel score = new JLabel();
-//		score.setForeground(new Color(242, 242, 242));
-//		score.setText("Score : ");
-//		score.setHorizontalAlignment(SwingConstants.CENTER);
-//		this.add(score);
-//
-//		JLabel life = new JLabel();
-//		life.setForeground(new Color(242, 242, 242));
-//		life.setText("Life :");
-//		life.setHorizontalAlignment(SwingConstants.CENTER);
-//		this.add(life);
 	}
 }
