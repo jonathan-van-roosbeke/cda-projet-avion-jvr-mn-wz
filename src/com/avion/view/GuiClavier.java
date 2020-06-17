@@ -33,6 +33,7 @@ public class GuiClavier extends JPanel {
 	private void initGuiClavier() {
 
 		for (int i = 0; i < 4; i++) {
+			this.setBackground(new Color(6, 6, 16));
 			JPanel initPanelOff = new JPanel();
 			JPanel initPanelOn = new JPanel();
 			initPanelOff.setLayout(new BorderLayout());

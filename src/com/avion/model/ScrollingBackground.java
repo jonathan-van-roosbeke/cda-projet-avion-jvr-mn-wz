@@ -26,7 +26,7 @@ public class ScrollingBackground extends JLabel implements Runnable {
 	public void run() {
 		try {
 			while (true) {
-				Thread.currentThread().sleep(3);
+				Thread.currentThread().sleep(10);
 				repaint();
 			}
 		} catch (Exception e) {
