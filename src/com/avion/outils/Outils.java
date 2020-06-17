@@ -3,6 +3,11 @@ package com.avion.outils;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.io.RandomAccessFile;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import javax.swing.ImageIcon;
 
@@ -35,4 +40,47 @@ public class Outils {
 		g2d.dispose();
 		return new ImageIcon(rotate);
 	}
+
+	public static void writeFile(String str) {
+		String path = System.getProperty("user.dir").toString() + "/temp/record.txt";
+		File temp = new File(System.getProperty("user.dir") + "/temp");
+		File file = new File(path);
+		RandomAccessFile randomFile = null;
+
+		if (!temp.exists()) {
+			temp.mkdir();
+		}
+
+		if (!file.exists()) {
+			try {
+				file.createNewFile();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+
+		try {
+			randomFile = new RandomAccessFile(path, "rw");
+			long fileLength = randomFile.length();
+			randomFile.seek(fileLength);
+			randomFile.writeBytes(str);
+			randomFile.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (randomFile != null) {
+				try {
+					randomFile.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+
+	public static String getDate() {
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+		return dtf.format(LocalDateTime.now());
+	}
+
 }
