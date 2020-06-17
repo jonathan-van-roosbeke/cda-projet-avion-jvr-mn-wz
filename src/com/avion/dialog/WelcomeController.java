@@ -25,6 +25,7 @@ public class WelcomeController extends MouseAdapter {
 			SwingUtilities.getWindowAncestor(((JLabel) e.getSource()).getParent()).dispose();
 			new GameView();
 		} else {
+			saisie.setText("");
 			error.setText("Erreur de saisie");
 		}
 	}

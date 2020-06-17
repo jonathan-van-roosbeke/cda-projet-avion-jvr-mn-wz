@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dialog;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
@@ -43,11 +44,15 @@ public class Welcome extends JDialog {
 		textsPanenl.setBackground(Constante.BACKGROUND_COLOR);
 
 		JLabel text = new JLabel("Ton nom : ");
+		text.setFont(new Font("Roboto", Font.BOLD, 20));
+
 		JLabel error = new JLabel();
 		JTextField saisie = new JTextField(6);
 
 		text.setForeground(Constante.TEXT_COLOR);
+
 		error.setForeground(Color.RED);
+		error.setFont(new Font("Roboto", Font.ITALIC, 20));
 
 		textsPanenl.add(text);
 		textsPanenl.add(saisie);
