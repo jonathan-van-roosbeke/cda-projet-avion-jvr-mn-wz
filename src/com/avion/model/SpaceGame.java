@@ -1,28 +1,28 @@
 package com.avion.model;
 
-import java.awt.Color;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-
 import javax.swing.JPanel;
+
+import com.avion.constante.Constante;
+import com.avion.view.GuiClavier;
 
 public class SpaceGame extends JPanel {
 
-	private static int width = 300;
-	private static int heigth = 300;
+	private static int width = Constante.WIDTH;
+	private static int heigth = Constante.HEIGHT;
+	private GuiClavier clavier;
+	private Spacecraft vaisseau;
 
-	public SpaceGame() {
-		this.setBackground(Color.YELLOW);
-
+	public SpaceGame(GuiClavier pClavier) {
+		this.clavier = pClavier;
 		this.setLayout(null);
 
+		ScrollingBackground background = new ScrollingBackground();
+		this.add(background);
 		MeteoritePanel m1 = new MeteoritePanel();
 		this.add(m1);
 
-		Spacecraft a1 = new Spacecraft();
-		this.add(a1);
-
-		a1.setFocusable(true);
+		vaisseau = new Spacecraft();
+		this.add(vaisseau);
 
 		new Thread(new Runnable() {
 			public void run() {
@@ -37,23 +37,10 @@ public class SpaceGame extends JPanel {
 				}
 			}
 		}).start();
+	}
 
-		a1.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyPressed(KeyEvent e) {
-				int step = 5;
-				if (e.getKeyCode() == KeyEvent.VK_UP) {
-					a1.setLocation(a1.getX(), a1.getY() - step);
-				} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-					a1.setLocation(a1.getX(), a1.getY() + step);
-				} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-					a1.setLocation(a1.getX() + step, a1.getY());
-				} else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-					a1.setLocation(a1.getX() - step, a1.getY());
-				}
-			}
-		});
-
+	public Spacecraft getVaisseau() {
+		return vaisseau;
 	}
 
 }
