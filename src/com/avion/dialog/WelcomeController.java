@@ -7,12 +7,14 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
+import com.avion.outils.Outils;
 import com.avion.view.GameView;
 
 public class WelcomeController extends MouseAdapter {
 
 	private JTextField saisie;
 	private JLabel error;
+	private String date;
 
 	public WelcomeController(JTextField saisie, JLabel error) {
 		this.error = error;
@@ -23,10 +25,17 @@ public class WelcomeController extends MouseAdapter {
 	public void mouseClicked(MouseEvent e) {
 		if (saisie.getText() != null && WelcomeModel.canPlay(saisie.getText())) {
 			SwingUtilities.getWindowAncestor(((JLabel) e.getSource()).getParent()).dispose();
+			Outils.writeFile(saisie.getText() + ";");
+			date = Outils.getDate();
 			new GameView();
 		} else {
 			saisie.setText("");
 			error.setText("Erreur de saisie");
 		}
 	}
+
+	public String getDate() {
+		return date;
+	}
+
 }
