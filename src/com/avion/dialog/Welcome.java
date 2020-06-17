@@ -28,6 +28,7 @@ public class Welcome extends JDialog {
 		final JDialog modelDialog = new JDialog(this, "Bienvenue", Dialog.ModalityType.TOOLKIT_MODAL);
 
 		modelDialog.addWindowListener(new WindowAdapter() {
+			@Override
 			public void windowClosing(WindowEvent e) {
 				System.exit(0);
 			}
@@ -66,7 +67,7 @@ public class Welcome extends JDialog {
 
 		dialogContainer.add(mainPanel);
 		modelDialog.setBounds((Toolkit.getDefaultToolkit().getScreenSize().width - 250) / 2,
-				(Toolkit.getDefaultToolkit().getScreenSize().height - 80) / 2, 250, 60);
+				(Toolkit.getDefaultToolkit().getScreenSize().height - 80) / 2, 250, 80);
 		modelDialog.setVisible(true);
 	}
 

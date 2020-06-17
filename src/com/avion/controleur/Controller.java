@@ -4,17 +4,23 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
+import com.avion.constante.AnimatedPictures;
+import com.avion.constante.Constante;
+import com.avion.model.Spacecraft;
 import com.avion.outils.Outils;
 import com.avion.view.GuiClavier;
 
 public class Controller implements KeyListener {
 
 	private GuiClavier clavier;
+	private Spacecraft vaisseau;
 
-	public Controller(GuiClavier pClavier) {
+	public Controller(GuiClavier pClavier, Spacecraft pVaisseau) {
 		this.clavier = pClavier;
+		this.vaisseau = pVaisseau;
 	}
 
 	@Override
@@ -26,19 +32,25 @@ public class Controller implements KeyListener {
 	public void keyPressed(KeyEvent e) {
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_UP:
-			upPressed(1);
+			affichageFleche(1);
+			moveVaisseauUp();
 			break;
 
 		case KeyEvent.VK_DOWN:
-			upPressed(2);
+			affichageFleche(2);
+			moveVaisseauDown();
 			break;
 
 		case KeyEvent.VK_LEFT:
-			upPressed(0);
+			affichageFleche(0);
+			moveVaisseauLeft();
+			changeImageDirection(1);
 			break;
 
 		case KeyEvent.VK_RIGHT:
-			upPressed(3);
+			affichageFleche(3);
+			moveVaisseauRight();
+			changeImageDirection(2);
 			break;
 
 		default:
@@ -60,10 +72,12 @@ public class Controller implements KeyListener {
 
 		case KeyEvent.VK_LEFT:
 			upReleased(0);
+			resetImageDirection();
 			break;
 
 		case KeyEvent.VK_RIGHT:
 			upReleased(3);
+			resetImageDirection();
 			break;
 
 		default:
@@ -72,11 +86,12 @@ public class Controller implements KeyListener {
 
 	}
 
-	private void upPressed(int pIndex) {
+	private void affichageFleche(int pIndex) {
 		clavier.getJpanelOff(pIndex).removeAll();
 		clavier.getJpanelOff(pIndex).revalidate();
 		clavier.getJpanelOff(pIndex).add(clavier.getJpanelOn(pIndex));
 		clavier.getJpanelOff(pIndex).repaint();
+
 	}
 
 	private void upReleased(int pIndex) {
@@ -105,5 +120,35 @@ public class Controller implements KeyListener {
 
 		}
 		clavier.getJpanelOff(pIndex).repaint();
+	}
+
+	private void moveVaisseauUp() {
+		vaisseau.setLocation(vaisseau.getX(), vaisseau.getY() - Constante.VAISSEAU_SPEED);
+	}
+
+	private void moveVaisseauDown() {
+		vaisseau.setLocation(vaisseau.getX(), vaisseau.getY() + Constante.VAISSEAU_SPEED);
+	}
+
+	private void moveVaisseauLeft() {
+		vaisseau.setLocation(vaisseau.getX() - Constante.VAISSEAU_SPEED, vaisseau.getY());
+	}
+
+	private void moveVaisseauRight() {
+		vaisseau.setLocation(vaisseau.getX() + Constante.VAISSEAU_SPEED, vaisseau.getY());
+	}
+
+	private void changeImageDirection(int pIndex) {
+		vaisseau.getVaisseau().removeAll();
+		vaisseau.revalidate();
+		vaisseau.getVaisseau().setIcon(new ImageIcon(AnimatedPictures.tVaisseau[pIndex]));
+		vaisseau.repaint();
+	}
+
+	private void resetImageDirection() {
+		vaisseau.getVaisseau().removeAll();
+		vaisseau.revalidate();
+		vaisseau.getVaisseau().setIcon(new ImageIcon(AnimatedPictures.tVaisseau[0]));
+		vaisseau.repaint();
 	}
 }

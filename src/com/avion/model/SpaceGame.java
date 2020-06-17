@@ -1,21 +1,23 @@
 package com.avion.model;
 
-import java.awt.Color;
 import java.util.Random;
 
-import javax.swing.JPanel;
+import javax.swing.JLabel;
 
 import com.avion.constante.Constante;
 import com.avion.meteorite.Meteorite;
+import com.avion.view.GuiClavier;
 
-public class SpaceGame extends JPanel {
+public class SpaceGame extends JLabel {
+	private GuiClavier clavier;
+	private Spacecraft vaisseau;
 
-	private static int width = 300;
-	private static int heigth = 300;
+	public SpaceGame(GuiClavier pClavier) {
 
-	public SpaceGame() {
-
-		this.setBackground(Color.YELLOW);
+//		ScrollingBackground sb = new ScrollingBackground();
+//		add(sb);
+//		this.setBackground(Color.YELLOW);
+		this.add(new ScrollingBackground());
 		this.setLayout(null);
 		Random x = new Random();
 		Meteorite m1 = Meteorite.meteorites.get(0);
@@ -32,6 +34,16 @@ public class SpaceGame extends JPanel {
 		this.add(m3);
 		this.add(m4);
 		this.add(m5);
+
+		this.clavier = pClavier;
+		this.setLayout(null);
+
+		ScrollingBackground background = new ScrollingBackground();
+		this.add(background);
+		this.add(m1);
+
+		vaisseau = new Spacecraft();
+		this.add(vaisseau);
 
 		new Thread(new Runnable() {
 			int x1 = x.nextInt(Constante.WIDTH - m1.getTaille()) + 25;
@@ -80,5 +92,9 @@ public class SpaceGame extends JPanel {
 			}
 
 		}).start();
+	}
+
+	public Spacecraft getVaisseau() {
+		return vaisseau;
 	}
 }

@@ -17,4 +17,9 @@ public class Constante {
 	public static final int BACKGROUND_HEIGHT = 1729;
 	public static final int BACKGROUD_SPEED = 1;
 
+	public static final int VAISSEAU_SPEED = 10;
+	public static final int VAISSEAU_WIDTH = 80;
+	public static final int VAISSEAU_HEIGHT = 66;
+
+	public static final int HEIGHT_CLAVIER = 130;
 }
