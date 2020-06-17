@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 
 import com.avion.constante.Constante;
 import com.avion.meteorite.Meteorite;
+import com.avion.meteorite.MeteoriteZigzag;
 
 public class SpaceGame extends JLabel {
 	private Spacecraft vaisseau;
@@ -63,8 +64,21 @@ public class SpaceGame extends JLabel {
 		}).start();
 	}
 
+	boolean goRight = true;
+
 	public void movingMeteorite(int x, int y, Meteorite meteorite) {
 		y += meteorite.getVitesse();
+		if (meteorite instanceof MeteoriteZigzag) {
+			x %= Constante.WIDTH;
+			if (x + 50 < Constante.WIDTH && goRight && goRight) {
+				goRight = false;
+			} else {
+				goRight = false;
+			}
+
+			x += (x + 50 >  ? -50 : 50;
+
+		}
 		if (y % Constante.HEIGHT == 0) {
 			y = 0;
 			x = randomX.nextInt(Constante.WIDTH);

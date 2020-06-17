@@ -1,5 +1,6 @@
 package com.avion.meteorite;
 
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -12,24 +13,22 @@ import com.avion.outils.MakeImage;
 
 public abstract class Meteorite extends JLabel {
 	private ImageIcon image;
-//	private int vitesse;
-//	private int degat;
-//	protected int taille;
-//	private int valeurPoint;
+	NoAnimatedPictures imageUrl;
 	private static Meteorite[] m = { new MeteoriteSimple(), new MeteoriteDeFeu(), new MeteoriteZigzag(),
 			new MeteoriteDeGlace(), new MeteoriteIceberg() };
 	public static List<Meteorite> meteorites = new ArrayList<>(Arrays.asList(m));
 
 	public Meteorite(NoAnimatedPictures imageUrl) {
+		this.imageUrl = imageUrl;
 		this.image = new ImageIcon(MakeImage.getTheImage(imageUrl));
 		this.image = MakeImage.getScaledImage(image.getImage(), 100, 100);
-//		this.vitesse = getVitesse();
-//		this.degat = getDegat();
-//		this.taille = getTaille();
-//		this.valeurPoint = getValeur();
 		this.image = MakeImage.getScaledImage(new ImageIcon(imageUrl.getUrl()).getImage(), getTaille(), getTaille());
 		this.setIcon(this.image);
 		this.setSize(100, 100);
+	}
+
+	public BufferedImage getImage() {
+		return MakeImage.getTheImage(imageUrl);
 	}
 
 	public abstract int getDegat();
