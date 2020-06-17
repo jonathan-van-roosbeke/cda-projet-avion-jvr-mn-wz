@@ -1,6 +1,7 @@
 package com.avion.view;
 
 import java.awt.BorderLayout;
+import java.awt.Container;
 import java.awt.Dimension;
 
 import javax.swing.JFrame;
@@ -8,6 +9,7 @@ import javax.swing.JPanel;
 
 import com.avion.constante.Constante;
 import com.avion.controleur.Controller;
+import com.avion.model.Spacecraft;
 
 public class GameView extends JFrame {
 
@@ -27,6 +29,10 @@ public class GameView extends JFrame {
 		addKeyListener(controller);
 		add(guiInfo, "North");
 		guiInfo.setPreferredSize(new Dimension(Constante.WIDTH, 60));
+
+		Spacecraft spacecraft = new Spacecraft();
+		Container c = getContentPane();
+		c.add(spacecraft);
 
 		add(guiClavier, "South");
 		setVisible(true);
