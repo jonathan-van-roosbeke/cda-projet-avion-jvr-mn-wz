@@ -1,13 +1,30 @@
 package com.avion.meteorite;
 
 import com.avion.constante.NoAnimatedPictures;
-import com.avion.model.Position;
 
-public class MeteoriteIceberg extends MeteoriteDeGlace {
+public class MeteoriteIceberg extends Meteorite {
 
-	public MeteoriteIceberg(Position position, NoAnimatedPictures image, int vitesse, int degat, int taille,
-			int valeurPoint) {
-		super(position, image, 2, 2, 5, 2);
+	public MeteoriteIceberg() {
+		super(NoAnimatedPictures.METEOR_ICEBERG);
 	}
 
+	@Override
+	public int getVitesse() {
+		return 200;
+	}
+
+	@Override
+	public int getTaille() {
+		return 200;
+	}
+
+	@Override
+	public int getDegat() {
+		return 0;
+	}
+
+	@Override
+	public int getValeur() {
+		return 0;
+	}
 }

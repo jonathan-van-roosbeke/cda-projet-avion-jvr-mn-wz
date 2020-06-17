@@ -52,7 +52,5 @@ public class ScrollingBackground extends Canvas implements Runnable {
 
 		// Draw the image onto the window
 		twoD.drawImage(back, null, 0, 0);
-
 	}
-
 }
