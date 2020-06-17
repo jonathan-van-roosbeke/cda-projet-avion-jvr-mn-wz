@@ -10,12 +10,12 @@ public class MeteoriteIceberg extends Meteorite {
 
 	@Override
 	public int getVitesse() {
-		return 200;
+		return 100;
 	}
 
 	@Override
 	public int getTaille() {
-		return 200;
+		return 100;
 	}
 
 	@Override
