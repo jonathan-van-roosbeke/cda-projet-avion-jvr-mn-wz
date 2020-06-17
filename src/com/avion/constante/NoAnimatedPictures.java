@@ -2,7 +2,7 @@ package com.avion.constante;
 
 public enum NoAnimatedPictures {
 
-	BACKGROUND("resources/images/background/background_space.png"),
+	BACKGROUND("resources/images/background/background_space.jpg"),
 	METEOR_SIMPLE("resources/images/meteor/meteor_simple.png"), METEOR_FEUX("resource/images/meteor/meteor_feux.png"),
 	METEOR_GLACE("resources/images/meteor/meteor_glace.png"),
 	METEOR_ICEBERG("resources/images/meteor/meteor_iceberg.png"),
