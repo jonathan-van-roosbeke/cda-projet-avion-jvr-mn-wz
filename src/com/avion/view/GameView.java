@@ -1,6 +1,7 @@
 package com.avion.view;
 
 import java.awt.BorderLayout;
+import java.awt.Container;
 import java.awt.Dimension;
 
 import javax.swing.JFrame;
@@ -8,7 +9,7 @@ import javax.swing.JPanel;
 
 import com.avion.constante.Constante;
 import com.avion.controleur.Controller;
-import com.avion.meteorite.RandomMeteorite;
+import com.avion.model.ScrollingBackground;
 
 public class GameView extends JFrame {
 
@@ -25,10 +26,15 @@ public class GameView extends JFrame {
 		GuiInfo guiInfo = new GuiInfo();
 		GuiClavier guiClavier = new GuiClavier();
 		Controller controller = new Controller(guiClavier);
+		ScrollingBackground background = new ScrollingBackground();
 		addKeyListener(controller);
-		add(new RandomMeteorite(), "Center");
+		getContentPane().add(background);
 		add(guiInfo, "North");
 		guiInfo.setPreferredSize(new Dimension(Constante.WIDTH, 60));
+
+		// Spacecraft spacecraft = new Spacecraft();
+		Container c = getContentPane();
+		// c.add(spacecraft);
 
 		add(guiClavier, "South");
 		setVisible(true);

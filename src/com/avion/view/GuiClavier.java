@@ -75,7 +75,7 @@ public class GuiClavier extends JPanel {
 		}
 
 		this.setLayout(new GridLayout(1, 4));
-		this.setPreferredSize(new Dimension(Constante.WIDTH, 200));
+		this.setPreferredSize(new Dimension(Constante.WIDTH, 150));
 	}
 
 	public void initBouton(JPanel pPanel, String pUrl) {
