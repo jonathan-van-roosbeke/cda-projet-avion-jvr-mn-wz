@@ -37,7 +37,5 @@ public class Spacecraft extends JPanel {
 		consReactor.gridx = 0;
 		consReactor.gridy = 1;
 		this.add(reactor, consReactor);
-
 	}
-
 }
