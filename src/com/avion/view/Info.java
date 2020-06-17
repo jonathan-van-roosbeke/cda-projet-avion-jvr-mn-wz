@@ -8,6 +8,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import com.avion.dialog.WelcomeController;
+
 public class Info extends JPanel {
 
 	public Info() {
@@ -24,7 +26,7 @@ public class Info extends JPanel {
 
 			switch (i) {
 			case 0:
-				label.setText("Name : ");
+				label.setText("Name : " + WelcomeController.getName());
 				break;
 			case 1:
 				label.setText("Score : ");
