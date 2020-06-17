@@ -28,7 +28,7 @@ public class Spacecraft extends JLabel {
 		}
 
 		vaisseau = new JLabel(new ImageIcon(imgVaisseau));
-		reacteur = new JLabel(new ImageIcon(AnimatedPictures.tReacteur[2]));
+		reacteur = new JLabel(new ImageIcon(AnimatedPictures.tReacteur[0]));
 
 		setLocation((Constante.WIDTH / 2) - (Constante.VAISSEAU_WIDTH / 2),
 				(Constante.HEIGHT - Constante.HEIGHT_CLAVIER) - Constante.VAISSEAU_HEIGHT - 200);
