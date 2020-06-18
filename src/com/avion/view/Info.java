@@ -35,7 +35,7 @@ public class Info extends JPanel {
 		scoreLabel.setFont(new Font("Roboto", Font.BOLD, 20));
 		this.add(scoreLabel);
 		scoreLabel.setText("Name : " + WelcomeController.getName());
-		scoreLabel.setText("Score : ");
+		scoreLabel.setText("Score : 000");
 
 		life = new JLabel();
 		life.setForeground(new Color(242, 242, 242));
