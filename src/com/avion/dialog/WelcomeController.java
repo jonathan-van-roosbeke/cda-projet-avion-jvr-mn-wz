@@ -18,6 +18,7 @@ public class WelcomeController extends MouseAdapter implements KeyListener {
 	private JLabel error;
 	private static String date;
 	private static String name;
+	private boolean activeGuiClavier;
 
 	public WelcomeController(JTextField saisie, JLabel error) {
 		this.error = error;
@@ -31,7 +32,7 @@ public class WelcomeController extends MouseAdapter implements KeyListener {
 			name = saisie.getText();
 			Outils.writeFile(name + ";");
 			date = Outils.getDate();
-			new GameView();
+			new GameView(activeGuiClavier);
 		} else {
 			saisie.setText("");
 			error.setText("Erreur de saisie");
@@ -59,7 +60,7 @@ public class WelcomeController extends MouseAdapter implements KeyListener {
 				name = saisie.getText();
 				Outils.writeFile(name + ";");
 				date = Outils.getDate();
-				new GameView();
+				new GameView(activeGuiClavier);
 			} else {
 				saisie.setText("");
 				error.setText("Erreur de saisie");

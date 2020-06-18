@@ -9,15 +9,15 @@ import javax.swing.JFrame;
 import com.avion.constante.Constante;
 import com.avion.constante.NoAnimatedPictures;
 import com.avion.controleur.Controller;
+import com.avion.dialog.Welcome;
 import com.avion.model.SpaceGame;
 
 public class GameView extends JFrame {
 
-	Image img;
+	private Image img;
 
-	public GameView() {
+	public GameView(boolean pActiveGuiClavier) {
 		init();
-
 	}
 
 	public void init() {
@@ -31,16 +31,21 @@ public class GameView extends JFrame {
 		setResizable(false);
 
 		GuiInfo guiInfo = new GuiInfo();
-		GuiClavier clavier = new GuiClavier();
 		SpaceGame spacegame = new SpaceGame();
-		Controller controller = new Controller(clavier, spacegame.getVaisseau());
+		this.getContentPane().add(guiInfo, BorderLayout.NORTH);
+		this.getContentPane().add(spacegame, BorderLayout.CENTER);
+		Controller controller;
+
+		if (Welcome.isChecked) {
+			GuiClavier clavier = new GuiClavier();
+			controller = new Controller(clavier, spacegame.getVaisseau());
+			this.getContentPane().add(clavier, BorderLayout.SOUTH);
+		} else {
+			controller = new Controller(spacegame.getVaisseau());
+		}
 
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
-
-		this.getContentPane().add(guiInfo, BorderLayout.NORTH);
-		this.getContentPane().add(spacegame, BorderLayout.CENTER);
-		this.getContentPane().add(clavier, BorderLayout.SOUTH);
 
 		this.addKeyListener(controller);
 		setVisible(true);
