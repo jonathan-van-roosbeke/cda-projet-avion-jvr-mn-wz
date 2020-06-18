@@ -36,12 +36,10 @@ public class GameView extends JFrame {
 		this.getContentPane().add(spacegame, BorderLayout.CENTER);
 		Controller controller;
 
+		GuiClavier clavier = new GuiClavier();
+		controller = new Controller(clavier, spacegame.getVaisseau());
 		if (Welcome.isChecked) {
-			GuiClavier clavier = new GuiClavier();
-			controller = new Controller(clavier, spacegame.getVaisseau());
 			this.getContentPane().add(clavier, BorderLayout.SOUTH);
-		} else {
-			controller = new Controller(spacegame.getVaisseau());
 		}
 
 		setDefaultCloseOperation(EXIT_ON_CLOSE);

@@ -24,8 +24,8 @@ public class MeteoriteZigzag extends Meteorite {
 	}
 
 	@Override
-	public int getValeur() {
-		return MeteoritesProperties.METEORITE_ZIGZAG.getValeur();
+	public int getScore() {
+		return MeteoritesProperties.METEORITE_ZIGZAG.getScore();
 
 	}
 

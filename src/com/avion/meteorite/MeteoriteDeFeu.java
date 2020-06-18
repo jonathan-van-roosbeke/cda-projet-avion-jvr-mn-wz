@@ -23,8 +23,8 @@ public class MeteoriteDeFeu extends Meteorite {
 	}
 
 	@Override
-	public int getValeur() {
-		return MeteoritesProperties.METEORITE_DE_FEU.getDegat();
+	public int getScore() {
+		return MeteoritesProperties.METEORITE_DE_FEU.getScore();
 	}
 
 	@Override

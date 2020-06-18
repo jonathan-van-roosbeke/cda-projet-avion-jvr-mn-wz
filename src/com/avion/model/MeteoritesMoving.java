@@ -40,18 +40,18 @@ public class MeteoritesMoving extends JLabel {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-//				while (!CalculateDistance.isCollided(posX, posY, meteorite.getTaille(), spacecraft) && life > 0) {
 
 				while (life > 0) {
 					if (CalculateDistance.isCollided(posX, posY, meteorite.getTaille(), spacecraft)) {
+
 						explosion.setLocation(spacecraft.getX(), spacecraft.getY());
 						add(explosion);
 						revalidate();
-
 					}
 
 					posY += meteorite.getVitesse();
-					if (posY + meteorite.getVitesse() > Constante.WIDTH + +meteorite.getTaille()) {
+					if (posY + meteorite.getVitesse() > Constante.WIDTH + meteorite.getTaille()
+							+ Constante.HEIGHT_CLAVIER) {
 
 						posY = -meteorite.getTaille();
 						posX = randomX.nextInt(Constante.WIDTH - meteorite.getTaille());
@@ -59,7 +59,6 @@ public class MeteoritesMoving extends JLabel {
 							((MeteoriteDeGlace) meteorite).setTaille();
 						}
 					}
-					posY %= Constante.WIDTH + meteorite.getTaille();
 					repaint();
 					try {
 						Thread.sleep(50);
@@ -67,7 +66,6 @@ public class MeteoritesMoving extends JLabel {
 						e.printStackTrace();
 					}
 					remove(explosion);
-
 				}
 				life -= 20;
 				Info.setLife(life);

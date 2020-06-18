@@ -30,10 +30,6 @@ public class Controller implements KeyListener {
 		this.vaisseau = pVaisseau;
 	}
 
-	public Controller(Spacecraft pVaisseau) {
-		this.vaisseau = pVaisseau;
-	}
-
 	@Override
 	public void keyTyped(KeyEvent e) {
 
