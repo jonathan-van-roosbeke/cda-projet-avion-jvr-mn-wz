@@ -39,26 +39,22 @@ public class Controller implements KeyListener {
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_UP:
 			affichageFleche(1);
-//			moveVaisseauUp();
 			ver = VERTICAL.UP;
 			break;
 
 		case KeyEvent.VK_DOWN:
 			affichageFleche(2);
-//			moveVaisseauDown();
 			ver = VERTICAL.DOWN;
 			break;
 
 		case KeyEvent.VK_LEFT:
 			affichageFleche(0);
-//			moveVaisseauLeft();
 			changeImageDirection(1);
 			hor = HORIZONTAL.LEFT;
 			break;
 
 		case KeyEvent.VK_RIGHT:
 			affichageFleche(3);
-//			moveVaisseauRight();
 			changeImageDirection(2);
 			hor = HORIZONTAL.RIGHT;
 			break;
@@ -69,28 +65,20 @@ public class Controller implements KeyListener {
 
 		if (ver == null && hor == HORIZONTAL.RIGHT) {
 			dir = DIRECTION.RIGHT;
-//			moveVaisseauRight();
 		} else if (ver == null && hor == HORIZONTAL.LEFT) {
 			dir = DIRECTION.LEFT;
-//			moveVaisseauLeft();
 		} else if (hor == null && ver == VERTICAL.UP) {
 			dir = DIRECTION.UP;
-//			moveVaisseauUp();
 		} else if (hor == null && ver == VERTICAL.DOWN) {
 			dir = DIRECTION.DOWN;
-//			moveVaisseauDown();
 		} else if (hor == HORIZONTAL.RIGHT && ver == VERTICAL.UP) {
 			dir = DIRECTION.UP_RIGHT;
-//			moveVaisseauUpRight();
 		} else if (hor == HORIZONTAL.RIGHT && ver == VERTICAL.DOWN) {
 			dir = DIRECTION.DOWN_RIGHT;
-//			moveVaisseauDownRight();
 		} else if (hor == HORIZONTAL.LEFT && ver == VERTICAL.UP) {
 			dir = DIRECTION.UP_LEFT;
-//			moveVaisseauUpLeft();
 		} else if (hor == HORIZONTAL.LEFT && ver == VERTICAL.DOWN) {
 			dir = DIRECTION.DOWN_LEFT;
-//			moveVaisseauDownLeft();
 		}
 
 		move(dir);
@@ -158,38 +146,6 @@ public class Controller implements KeyListener {
 		}
 		clavier.getJpanelOff(pIndex).repaint();
 	}
-
-//	private void moveVaisseauUp() {
-//		vaisseau.setLocation(vaisseau.getX(), vaisseau.getY() - Constante.VAISSEAU_SPEED);
-//	}
-//
-//	private void moveVaisseauDown() {
-//		vaisseau.setLocation(vaisseau.getX(), vaisseau.getY() + Constante.VAISSEAU_SPEED);
-//	}
-//
-//	private void moveVaisseauLeft() {
-//		vaisseau.setLocation(vaisseau.getX() - Constante.VAISSEAU_SPEED, vaisseau.getY());
-//	}
-//
-//	private void moveVaisseauRight() {
-//		vaisseau.setLocation(vaisseau.getX() + Constante.VAISSEAU_SPEED, vaisseau.getY());
-//	}
-//
-//	private void moveVaisseauUpRight() {
-//		vaisseau.setLocation(vaisseau.getX() + Constante.VAISSEAU_SPEED, vaisseau.getY() - Constante.VAISSEAU_SPEED);
-//	}
-//
-//	private void moveVaisseauUpLeft() {
-//		vaisseau.setLocation(vaisseau.getX() - Constante.VAISSEAU_SPEED, vaisseau.getY() - Constante.VAISSEAU_SPEED);
-//	}
-//
-//	private void moveVaisseauDownRight() {
-//		vaisseau.setLocation(vaisseau.getX() + Constante.VAISSEAU_SPEED, vaisseau.getY() + Constante.VAISSEAU_SPEED);
-//	}
-//
-//	private void moveVaisseauDownLeft() {
-//		vaisseau.setLocation(vaisseau.getX() - Constante.VAISSEAU_SPEED, vaisseau.getY() + Constante.VAISSEAU_SPEED);
-//	}
 
 	private void move(DIRECTION dir) {
 		Point pos = vaisseau.getLocation();
