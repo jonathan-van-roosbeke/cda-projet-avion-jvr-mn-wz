@@ -12,6 +12,7 @@ import com.avion.constante.Constante;
 import com.avion.constante.Constante.DIRECTION;
 import com.avion.constante.Constante.HORIZONTAL;
 import com.avion.constante.Constante.VERTICAL;
+import com.avion.dialog.Welcome;
 import com.avion.model.Spacecraft;
 import com.avion.outils.Outils;
 import com.avion.view.GuiClavier;
@@ -29,6 +30,10 @@ public class Controller implements KeyListener {
 		this.vaisseau = pVaisseau;
 	}
 
+	public Controller(Spacecraft pVaisseau) {
+		this.vaisseau = pVaisseau;
+	}
+
 	@Override
 	public void keyTyped(KeyEvent e) {
 
@@ -38,27 +43,31 @@ public class Controller implements KeyListener {
 	public void keyPressed(KeyEvent e) {
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_UP:
-			affichageFleche(1);
-//			moveVaisseauUp();
+			if (Welcome.isChecked) {
+				affichageFleche(1);
+			}
 			ver = VERTICAL.UP;
 			break;
 
 		case KeyEvent.VK_DOWN:
-			affichageFleche(2);
-//			moveVaisseauDown();
+			if (Welcome.isChecked) {
+				affichageFleche(2);
+			}
 			ver = VERTICAL.DOWN;
 			break;
 
 		case KeyEvent.VK_LEFT:
-			affichageFleche(0);
-//			moveVaisseauLeft();
+			if (Welcome.isChecked) {
+				affichageFleche(0);
+			}
 			changeImageDirection(1);
 			hor = HORIZONTAL.LEFT;
 			break;
 
 		case KeyEvent.VK_RIGHT:
-			affichageFleche(3);
-//			moveVaisseauRight();
+			if (Welcome.isChecked) {
+				affichageFleche(3);
+			}
 			changeImageDirection(2);
 			hor = HORIZONTAL.RIGHT;
 			break;
@@ -69,28 +78,27 @@ public class Controller implements KeyListener {
 
 		if (ver == null && hor == HORIZONTAL.RIGHT) {
 			dir = DIRECTION.RIGHT;
-//			moveVaisseauRight();
+
 		} else if (ver == null && hor == HORIZONTAL.LEFT) {
 			dir = DIRECTION.LEFT;
-//			moveVaisseauLeft();
+
 		} else if (hor == null && ver == VERTICAL.UP) {
 			dir = DIRECTION.UP;
-//			moveVaisseauUp();
+
 		} else if (hor == null && ver == VERTICAL.DOWN) {
 			dir = DIRECTION.DOWN;
-//			moveVaisseauDown();
+
 		} else if (hor == HORIZONTAL.RIGHT && ver == VERTICAL.UP) {
 			dir = DIRECTION.UP_RIGHT;
-//			moveVaisseauUpRight();
+
 		} else if (hor == HORIZONTAL.RIGHT && ver == VERTICAL.DOWN) {
 			dir = DIRECTION.DOWN_RIGHT;
-//			moveVaisseauDownRight();
+
 		} else if (hor == HORIZONTAL.LEFT && ver == VERTICAL.UP) {
 			dir = DIRECTION.UP_LEFT;
-//			moveVaisseauUpLeft();
+
 		} else if (hor == HORIZONTAL.LEFT && ver == VERTICAL.DOWN) {
 			dir = DIRECTION.DOWN_LEFT;
-//			moveVaisseauDownLeft();
 		}
 
 		move(dir);
@@ -100,23 +108,31 @@ public class Controller implements KeyListener {
 	public void keyReleased(KeyEvent e) {
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_UP:
-			upReleased(1);
+			if (Welcome.isChecked) {
+				upReleased(1);
+			}
 			ver = null;
 			break;
 
 		case KeyEvent.VK_DOWN:
-			upReleased(2);
+			if (Welcome.isChecked) {
+				upReleased(2);
+			}
 			ver = null;
 			break;
 
 		case KeyEvent.VK_LEFT:
-			upReleased(0);
+			if (Welcome.isChecked) {
+				upReleased(0);
+			}
 			resetImageDirection();
 			hor = null;
 			break;
 
 		case KeyEvent.VK_RIGHT:
-			upReleased(3);
+			if (Welcome.isChecked) {
+				upReleased(3);
+			}
 			resetImageDirection();
 			hor = null;
 			break;
@@ -159,38 +175,6 @@ public class Controller implements KeyListener {
 		clavier.getJpanelOff(pIndex).repaint();
 	}
 
-//	private void moveVaisseauUp() {
-//		vaisseau.setLocation(vaisseau.getX(), vaisseau.getY() - Constante.VAISSEAU_SPEED);
-//	}
-//
-//	private void moveVaisseauDown() {
-//		vaisseau.setLocation(vaisseau.getX(), vaisseau.getY() + Constante.VAISSEAU_SPEED);
-//	}
-//
-//	private void moveVaisseauLeft() {
-//		vaisseau.setLocation(vaisseau.getX() - Constante.VAISSEAU_SPEED, vaisseau.getY());
-//	}
-//
-//	private void moveVaisseauRight() {
-//		vaisseau.setLocation(vaisseau.getX() + Constante.VAISSEAU_SPEED, vaisseau.getY());
-//	}
-//
-//	private void moveVaisseauUpRight() {
-//		vaisseau.setLocation(vaisseau.getX() + Constante.VAISSEAU_SPEED, vaisseau.getY() - Constante.VAISSEAU_SPEED);
-//	}
-//
-//	private void moveVaisseauUpLeft() {
-//		vaisseau.setLocation(vaisseau.getX() - Constante.VAISSEAU_SPEED, vaisseau.getY() - Constante.VAISSEAU_SPEED);
-//	}
-//
-//	private void moveVaisseauDownRight() {
-//		vaisseau.setLocation(vaisseau.getX() + Constante.VAISSEAU_SPEED, vaisseau.getY() + Constante.VAISSEAU_SPEED);
-//	}
-//
-//	private void moveVaisseauDownLeft() {
-//		vaisseau.setLocation(vaisseau.getX() - Constante.VAISSEAU_SPEED, vaisseau.getY() + Constante.VAISSEAU_SPEED);
-//	}
-
 	private void move(DIRECTION dir) {
 		Point pos = vaisseau.getLocation();
 
@@ -224,12 +208,22 @@ public class Controller implements KeyListener {
 			pos.y -= Constante.VAISSEAU_SPEED;
 			break;
 		}
-		if (pos.x >= Constante.WIDTH - vaisseau.getWidth() || pos.x < 0
-				|| pos.y >= Constante.HEIGHT - vaisseau.getHeight() - Constante.HEIGHT_CLAVIER - 90 || pos.y < 0)
-			return;
+		if (Welcome.isChecked) {
+			if (pos.x >= Constante.WIDTH - vaisseau.getWidth() || pos.x < 0
+					|| pos.y >= Constante.HEIGHT - vaisseau.getHeight() - Constante.HEIGHT_CLAVIER - 90 || pos.y < 0)
+				return;
 
-		vaisseau.setLocation(pos);
-		vaisseau.validate();
+			vaisseau.setLocation(pos);
+			vaisseau.validate();
+		} else {
+			if (pos.x >= Constante.WIDTH - vaisseau.getWidth() || pos.x < 0
+					|| pos.y >= Constante.HEIGHT - Constante.HEIGHT_CLAVIER - 40 || pos.y < 0)
+				return;
+
+			vaisseau.setLocation(pos);
+			vaisseau.validate();
+		}
+
 	}
 
 	private void changeImageDirection(int pIndex) {
