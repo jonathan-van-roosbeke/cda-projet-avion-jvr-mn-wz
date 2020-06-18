@@ -41,11 +41,14 @@ public class MeteoritesMoving extends JLabel {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-				while (life > 0) {
+				while (!CalculateDistance.isCollided(posX, posY, meteorite.getTaille(), spacecraft) && life > 0) {
+
+//				while (life > 0) {
 					if (CalculateDistance.isCollided(posX, posY, meteorite.getTaille(), spacecraft)) {
 						explosion.setLocation(spacecraft.getX(), spacecraft.getY());
 						add(explosion);
 						revalidate();
+
 					}
 					posY += meteorite.getVitesse();
 					if (posY + meteorite.getVitesse() > Constante.WIDTH) {
