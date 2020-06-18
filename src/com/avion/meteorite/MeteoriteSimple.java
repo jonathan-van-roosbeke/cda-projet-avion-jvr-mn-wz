@@ -10,22 +10,22 @@ public class MeteoriteSimple extends Meteorite {
 
 	@Override
 	public int getVitesse() {
-		return Properties.METEORITE_SIMPLE.getVitesse();
+		return MeteoritesProperties.METEORITE_SIMPLE.getVitesse();
 	}
 
 	@Override
 	public int getTaille() {
-		return Properties.METEORITE_SIMPLE.getTaille();
+		return MeteoritesProperties.METEORITE_SIMPLE.getTaille();
 	}
 
 	@Override
 	public int getDegat() {
-		return Properties.METEORITE_SIMPLE.getDegat();
+		return MeteoritesProperties.METEORITE_SIMPLE.getDegat();
 	}
 
 	@Override
 	public int getValeur() {
-		return Properties.METEORITE_SIMPLE.getValeur();
+		return MeteoritesProperties.METEORITE_SIMPLE.getValeur();
 	}
 
 	@Override
