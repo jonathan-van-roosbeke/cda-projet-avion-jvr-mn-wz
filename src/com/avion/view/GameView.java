@@ -1,7 +1,6 @@
 package com.avion.view;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
@@ -27,8 +26,6 @@ public class GameView extends JFrame {
 		GuiClavier clavier = new GuiClavier();
 		SpaceGame spacegame = new SpaceGame();
 		Controller controller = new Controller(clavier, spacegame.getVaisseau());
-
-		guiInfo.setPreferredSize(new Dimension(Constante.WIDTH, 60));
 
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);

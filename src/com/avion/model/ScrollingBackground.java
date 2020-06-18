@@ -8,7 +8,6 @@ import javax.swing.JLabel;
 
 public class ScrollingBackground extends JLabel implements Runnable {
 
-	// Two copies of the background image to scroll
 	private Background backOne;
 	private Background backTwo;
 
@@ -26,7 +25,7 @@ public class ScrollingBackground extends JLabel implements Runnable {
 	public void run() {
 		try {
 			while (true) {
-				Thread.currentThread().sleep(10);
+				Thread.currentThread().sleep(30);
 				repaint();
 			}
 		} catch (Exception e) {

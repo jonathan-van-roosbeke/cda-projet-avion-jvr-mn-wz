@@ -4,26 +4,31 @@ import com.avion.constante.NoAnimatedPictures;
 
 public class MeteoriteDeFeu extends Meteorite {
 	public MeteoriteDeFeu() {
-		super(NoAnimatedPictures.METEOR_FEUX);
+		super();
 	}
 
 	@Override
 	public int getVitesse() {
-		return 50;
+		return Properties.METEORITE_DE_FEU.getVitesse();
 	}
 
 	@Override
 	public int getTaille() {
-		return 100;
+		return Properties.METEORITE_DE_FEU.getTaille();
 	}
 
 	@Override
 	public int getDegat() {
-		return 0;
+		return Properties.METEORITE_DE_FEU.getDegat();
 	}
 
 	@Override
 	public int getValeur() {
-		return 0;
+		return Properties.METEORITE_DE_FEU.getDegat();
+	}
+
+	@Override
+	public NoAnimatedPictures getImageUrl() {
+		return NoAnimatedPictures.METEOR_FEUX;
 	}
 }
