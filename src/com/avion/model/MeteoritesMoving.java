@@ -4,9 +4,11 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.Random;
 
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 import com.avion.collision.CalculateDistance;
+import com.avion.constante.AnimatedPictures;
 import com.avion.constante.Constante;
 import com.avion.meteorite.Meteorite;
 
@@ -19,8 +21,11 @@ public class MeteoritesMoving extends JLabel {
 	private Meteorite meteorite;
 	private static int cmpt;
 	private int id;
+	private static int nombreDeVie = 100;
 
 	public MeteoritesMoving(Meteorite meteorite, Spacecraft spacecraft) {
+		JLabel explosion = new JLabel(new ImageIcon(AnimatedPictures.tExplosion));
+		explosion.setSize(100, 100);
 		this.meteorite = meteorite;
 		this.spacecraft = spacecraft;
 		this.id = ++cmpt;
@@ -28,27 +33,33 @@ public class MeteoritesMoving extends JLabel {
 		setSize(Constante.WIDTH, Constante.HEIGHT);
 		setVisible(true);
 		image = meteorite.getImage();
-		posX = randomX.nextInt(Constante.WIDTH);
+		posX = randomX.nextInt(Constante.WIDTH - meteorite.getTaille()) + (meteorite.getTaille());
 		posY = 0;
+
 		new Thread(new Runnable() {
 
 			public void run() {
-				while (!CalculateDistance.isCollided(posX, posY, meteorite.getTaille(), spacecraft)) {
+				while (nombreDeVie > 0) {
+					if (CalculateDistance.isCollided(posX, posY, meteorite.getTaille(), spacecraft)) {
+						explosion.setLocation(spacecraft.getX(), spacecraft.getY());
+						add(explosion);
+						revalidate();
+					}
 					posY += meteorite.getVitesse();
 					if (posY + meteorite.getVitesse() > Constante.WIDTH) {
 						posY = -meteorite.getTaille();
-						posX = randomX.nextInt(Constante.WIDTH - meteorite.getTaille()) - (meteorite.getTaille() / 2);
+						posX = randomX.nextInt(Constante.WIDTH - meteorite.getTaille()) + (meteorite.getTaille());
 					}
 					posY %= Constante.WIDTH;
 					repaint();
 					try {
-						Thread.sleep(30);
+						Thread.sleep(50);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
+					remove(explosion);
 
 				}
-				System.out.println("booom");
 			}
 
 		}).start();
