@@ -11,29 +11,23 @@ import com.avion.collision.CalculateDistance;
 import com.avion.constante.AnimatedPictures;
 import com.avion.constante.Constante;
 import com.avion.meteorite.Meteorite;
+import com.avion.meteorite.MeteoriteDeGlace;
 
 public class MeteoritesMoving extends JLabel {
 	private Random randomX;
 	private BufferedImage image;
 	private int posX;
 	private int posY;
-	private Spacecraft spacecraft;
-	private Meteorite meteorite;
-	private static int cmpt;
-	private int id;
 	private static int nombreDeVie = 100;
 
 	public MeteoritesMoving(Meteorite meteorite, Spacecraft spacecraft) {
 		JLabel explosion = new JLabel(new ImageIcon(AnimatedPictures.tExplosion));
 		explosion.setSize(100, 100);
-		this.meteorite = meteorite;
-		this.spacecraft = spacecraft;
-		this.id = ++cmpt;
 		randomX = new Random();
 		setSize(Constante.WIDTH, Constante.HEIGHT);
 		setVisible(true);
 		image = meteorite.getImage();
-		posX = randomX.nextInt(Constante.WIDTH - meteorite.getTaille()) + (meteorite.getTaille());
+		posX = randomX.nextInt(Constante.WIDTH - meteorite.getTaille());
 		posY = 0;
 
 		new Thread(new Runnable() {
@@ -45,12 +39,17 @@ public class MeteoritesMoving extends JLabel {
 						add(explosion);
 						revalidate();
 					}
+
 					posY += meteorite.getVitesse();
-					if (posY + meteorite.getVitesse() > Constante.WIDTH) {
+					if (posY + meteorite.getVitesse() > Constante.WIDTH + +meteorite.getTaille()) {
+
 						posY = -meteorite.getTaille();
-						posX = randomX.nextInt(Constante.WIDTH - meteorite.getTaille()) + (meteorite.getTaille());
+						posX = randomX.nextInt(Constante.WIDTH - meteorite.getTaille());
+						if (meteorite instanceof MeteoriteDeGlace) {
+							((MeteoriteDeGlace) meteorite).setTaille();
+						}
 					}
-					posY %= Constante.WIDTH;
+					posY %= Constante.WIDTH + meteorite.getTaille();
 					repaint();
 					try {
 						Thread.sleep(50);
