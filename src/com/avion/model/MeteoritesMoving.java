@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 import java.util.Random;
 
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import com.avion.collision.CalculateDistance;
@@ -13,22 +14,25 @@ import com.avion.constante.Constante;
 import com.avion.meteorite.Meteorite;
 import com.avion.meteorite.MeteoriteDeGlace;
 import com.avion.view.Info;
+import com.avion.view.LifeBar;
 
 public class MeteoritesMoving extends JLabel {
 	private Random randomX;
 	private BufferedImage image;
 	private int posX;
 	private int posY;
-	private static int nombreDeVie = 100;
 	private Spacecraft spacecraft;
 	private Meteorite meteorite;
 	private static int cmpt;
 	private int id;
-	private static int life = 100;
+	private static int life = 10;
 	private static int score;
+	private static boolean display = true;
+	private static JLabel explosion;
+	private static boolean continuer = true;
 
-	public MeteoritesMoving(Meteorite meteorite, Spacecraft spacecraft) {
-		JLabel explosion = new JLabel(new ImageIcon(AnimatedPictures.tExplosion));
+	public MeteoritesMoving(Meteorite meteorite, Spacecraft spacecraft, JFrame frame) {
+		explosion = new JLabel(new ImageIcon(AnimatedPictures.tExplosion));
 		explosion.setSize(100, 100);
 		randomX = new Random();
 		setSize(Constante.WIDTH, Constante.HEIGHT);
@@ -41,8 +45,30 @@ public class MeteoritesMoving extends JLabel {
 			@Override
 			public void run() {
 
-				while (life > 0) {
+				int counter = 1;
+				while (continuer) {
+					if (life <= 0) {
+						counter++;
+						counter %= 5;
+
+						synchronized (explosion) {
+							if (counter == 1) {
+//								display = false;
+								Replay replay = new Replay(frame);
+								System.out.println("Replay?");
+								continuer = replay.getResult() == 0;
+							}
+						}
+						posY = 0;
+						life = 100;
+//						display = true;
+						Info.setLife(life);
+					}
+					LifeBar.setLifeBar(life);
 					if (CalculateDistance.isCollided(posX, posY, meteorite.getTaille(), spacecraft)) {
+
+						life -= meteorite.getDegat();
+						Info.setLife(life);
 
 						explosion.setLocation(spacecraft.getX(), spacecraft.getY());
 						add(explosion);
@@ -67,9 +93,9 @@ public class MeteoritesMoving extends JLabel {
 					}
 					remove(explosion);
 				}
-				life -= 20;
-				Info.setLife(life);
 				System.out.println("booom");
+
+//				
 			}
 
 		}).start();
