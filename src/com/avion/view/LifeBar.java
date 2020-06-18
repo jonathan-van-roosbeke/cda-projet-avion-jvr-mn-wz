@@ -53,6 +53,14 @@ public class LifeBar extends JPanel {
 
 	public static void setLifeBar(int nb) {
 		nb = MeteoritesMoving.getLife();
+		if (nb == 100) {
+			for (int i = 0; i < 5; i++) {
+				JLabel jl = new JLabel();
+				jl.setIcon(new ImageIcon("resources/images/vie/0" + i + "_vie_on.png"));
+				jl.setHorizontalAlignment(SwingConstants.CENTER);
+			}
+		}
+
 		if (nb < 80) {
 			l5.setIcon(new ImageIcon("resources/images/vie/01_vie_off.png"));
 			l5.setHorizontalAlignment(SwingConstants.CENTER);
