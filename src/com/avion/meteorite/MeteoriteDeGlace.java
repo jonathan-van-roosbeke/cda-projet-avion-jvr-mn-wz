@@ -1,12 +1,16 @@
 package com.avion.meteorite;
 
+import java.util.Random;
+
 import com.avion.constante.NoAnimatedPictures;
 
 public class MeteoriteDeGlace extends Meteorite {
-	private static int taille = 100;
+	private static int taille;
 
 	public MeteoriteDeGlace() {
 		super();
+		taille = new Random().nextInt(MeteoritesProperties.METEORITE_DE_FEU.getTaille())
+				+ MeteoritesProperties.METEORITE_SIMPLE.getTaille();
 	}
 
 	@Override
@@ -21,7 +25,9 @@ public class MeteoriteDeGlace extends Meteorite {
 
 	@Override
 	public int getTaille() {
-		return MeteoritesProperties.METEORITE_DE_GLACE.getTaille();
+
+		System.out.println(taille);
+		return taille;
 	}
 
 	@Override
