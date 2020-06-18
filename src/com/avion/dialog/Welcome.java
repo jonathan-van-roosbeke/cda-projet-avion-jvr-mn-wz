@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dialog;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics2D;
@@ -26,6 +27,7 @@ public class Welcome extends JDialog {
 
 	public Welcome() {
 		final JDialog modelDialog = new JDialog(this, "Bienvenue", Dialog.ModalityType.TOOLKIT_MODAL);
+		modelDialog.setResizable(false);
 
 		modelDialog.addWindowListener(new WindowAdapter() {
 			@Override
@@ -33,6 +35,8 @@ public class Welcome extends JDialog {
 				System.exit(0);
 			}
 		});
+
+		this.setPreferredSize(new Dimension(300, 300));
 
 		Container dialogContainer = modelDialog.getContentPane();
 
@@ -68,7 +72,7 @@ public class Welcome extends JDialog {
 
 		dialogContainer.add(mainPanel);
 		modelDialog.setBounds((Toolkit.getDefaultToolkit().getScreenSize().width - 250) / 2,
-				(Toolkit.getDefaultToolkit().getScreenSize().height - 80) / 2, 250, 80);
+				(Toolkit.getDefaultToolkit().getScreenSize().height - 80) / 2, 350, 250);
 		modelDialog.setVisible(true);
 	}
 
