@@ -12,20 +12,18 @@ import com.avion.constante.AnimatedPictures;
 import com.avion.constante.Constante;
 import com.avion.meteorite.Meteorite;
 import com.avion.meteorite.MeteoriteDeGlace;
+import com.avion.meteorite.MeteoriteZigzag;
 import com.avion.view.Info;
 
 public class MeteoritesMoving extends JLabel {
 	private Random randomX;
 	private BufferedImage image;
-	private int posX;
-	private int posY;
-	private static int nombreDeVie = 100;
-	private Spacecraft spacecraft;
-	private Meteorite meteorite;
-	private static int cmpt;
-	private int id;
+	private int positionMeteoriteX;
+	private int positionMeteoriteY;
 	private static int life = 100;
 	private static int score;
+
+	private int posXZigZag;
 
 	public MeteoritesMoving(Meteorite meteorite, Spacecraft spacecraft) {
 		JLabel explosion = new JLabel(new ImageIcon(AnimatedPictures.tExplosion));
@@ -34,9 +32,13 @@ public class MeteoritesMoving extends JLabel {
 		setSize(Constante.WIDTH, Constante.HEIGHT);
 		setVisible(true);
 		image = meteorite.getImage();
-		posX = randomX.nextInt(Constante.WIDTH - meteorite.getTaille());
-		posY = 0;
+		positionMeteoriteX = randomX.nextInt(Constante.WIDTH - meteorite.getTaille());
+		positionMeteoriteY = 0;
+		posXZigZag = meteorite instanceof MeteoriteZigzag ? positionMeteoriteX : posXZigZag;
+		startPlaying(meteorite, spacecraft, explosion);
+	}
 
+	public void startPlaying(Meteorite meteorite, Spacecraft spacecraft, JLabel explosion) {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -60,6 +62,7 @@ public class MeteoritesMoving extends JLabel {
 							((MeteoriteDeGlace) meteorite).setTaille();
 						}
 					}
+					move(meteorite, spacecraft, explosion);
 					repaint();
 					try {
 						Thread.sleep(50);
@@ -68,18 +71,41 @@ public class MeteoritesMoving extends JLabel {
 					}
 					remove(explosion);
 				}
-				life -= 20;
-				Info.setLife(life);
-				System.out.println("booom");
 			}
-
 		}).start();
+	}
+
+	public void move(Meteorite meteorite, Spacecraft spacecraft, JLabel explosion) {
+		if (CalculateDistance.isCollided(positionMeteoriteX, positionMeteoriteY, meteorite.getTaille(), spacecraft)) {
+			life -= meteorite.getDegat();
+			Info.setLife(life);
+			explosion.setLocation(spacecraft.getX(), spacecraft.getY());
+			add(explosion);
+			revalidate();
+		}
+		if (meteorite instanceof MeteoriteZigzag) {
+			posXZigZag += 10;
+			positionMeteoriteX += ((posXZigZag / Constante.WIDTH) % 2 == 0) ? 10 : -10;
+		}
+
+		positionMeteoriteY += meteorite.getVitesse();
+		if (positionMeteoriteY + meteorite.getVitesse() > Constante.WIDTH + meteorite.getTaille()
+				+ Constante.HEIGHT_CLAVIER) {
+
+			positionMeteoriteY = -meteorite.getTaille();
+			positionMeteoriteX = randomX.nextInt(Constante.WIDTH - meteorite.getTaille());
+			posXZigZag = meteorite instanceof MeteoriteZigzag ? positionMeteoriteX : posXZigZag;
+
+			if (meteorite instanceof MeteoriteDeGlace) {
+				((MeteoriteDeGlace) meteorite).setTaille();
+			}
+		}
 	}
 
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		g.drawImage(image, posX, posY, null);
+		g.drawImage(image, positionMeteoriteX, positionMeteoriteY, null);
 	}
 
 	public static int getLife() {
@@ -89,22 +115,4 @@ public class MeteoritesMoving extends JLabel {
 	public static int getScore() {
 		return score;
 	}
-
-//	if (meteorite instanceof MeteoriteSimple) {
-//		score += 2;
-//	}
-//	if (meteorite instanceof MeteoriteDeFeu) {
-//		score += 1;
-//	}
-//	if (meteorite instanceof MeteoriteDeGlace) {
-//		score += 3;
-//	}
-//	if (meteorite instanceof MeteoriteIceberg) {
-//		score += 4;
-//	}
-//	if (meteorite instanceof MeteoriteZigzag) {
-//		score += 5;
-//	}
-//	Info.setScore(score);
-
 }
