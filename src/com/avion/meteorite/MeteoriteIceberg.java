@@ -24,8 +24,8 @@ public class MeteoriteIceberg extends Meteorite {
 	}
 
 	@Override
-	public int getValeur() {
-		return MeteoritesProperties.METEORITE_ICEBERG.getValeur();
+	public int getScore() {
+		return MeteoritesProperties.METEORITE_ICEBERG.getScore();
 	}
 
 	@Override

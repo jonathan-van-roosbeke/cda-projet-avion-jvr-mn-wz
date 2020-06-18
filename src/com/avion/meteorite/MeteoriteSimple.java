@@ -24,8 +24,8 @@ public class MeteoriteSimple extends Meteorite {
 	}
 
 	@Override
-	public int getValeur() {
-		return MeteoritesProperties.METEORITE_SIMPLE.getValeur();
+	public int getScore() {
+		return MeteoritesProperties.METEORITE_SIMPLE.getScore();
 	}
 
 	@Override

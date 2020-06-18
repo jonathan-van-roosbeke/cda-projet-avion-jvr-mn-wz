@@ -35,8 +35,8 @@ public class MeteoriteDeGlace extends Meteorite {
 	}
 
 	@Override
-	public int getValeur() {
-		return MeteoritesProperties.METEORITE_DE_GLACE.getValeur();
+	public int getScore() {
+		return MeteoritesProperties.METEORITE_DE_GLACE.getScore();
 	}
 
 	@Override

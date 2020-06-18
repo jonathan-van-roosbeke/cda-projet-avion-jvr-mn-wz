@@ -6,13 +6,13 @@ public enum MeteoritesProperties {
 
 	int vitesse;
 	int degat;
-	int valeur;
+	int score;
 	int taille;
 
-	private MeteoritesProperties(int vitesse, int degat, int valeur, int taille) {
+	private MeteoritesProperties(int vitesse, int degat, int score, int taille) {
 		this.vitesse = vitesse;
 		this.degat = degat;
-		this.valeur = valeur;
+		this.score = score;
 		this.taille = taille;
 	}
 
@@ -24,8 +24,8 @@ public enum MeteoritesProperties {
 		return degat;
 	}
 
-	public int getValeur() {
-		return valeur;
+	public int getScore() {
+		return score;
 	}
 
 	public int getTaille() {
