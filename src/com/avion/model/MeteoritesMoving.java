@@ -73,6 +73,7 @@ public class MeteoritesMoving extends JLabel {
 		if (positionMeteoriteY + meteorite.getVitesse() > Constante.WIDTH + meteorite.getTaille()
 				+ Constante.HEIGHT_CLAVIER) {
 
+			Info.setScore(meteorite.getScore() + Info.getScore());
 			positionMeteoriteY = -meteorite.getTaille();
 			positionMeteoriteX = randomX.nextInt(Constante.WIDTH - meteorite.getTaille());
 			posXZigZag = meteorite instanceof MeteoriteZigzag ? positionMeteoriteX : posXZigZag;
