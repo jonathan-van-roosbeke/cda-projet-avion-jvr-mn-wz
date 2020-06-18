@@ -61,6 +61,7 @@ public class Welcome extends JDialog {
 		JLabel imageLabel = new JLabel(new ImageIcon(getScaledImage(new ImageIcon("ok.png").getImage(), 40, 40)));
 		imageLabel.addMouseListener(new WelcomeController(saisie, error));
 		textsPanenl.add(imageLabel);
+		saisie.addKeyListener(new WelcomeController(saisie, error));
 
 		mainPanel.add(error, BorderLayout.SOUTH);
 		mainPanel.add(textsPanenl, BorderLayout.NORTH);
