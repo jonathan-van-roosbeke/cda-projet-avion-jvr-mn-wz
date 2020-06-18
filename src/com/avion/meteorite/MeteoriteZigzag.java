@@ -10,22 +10,22 @@ public class MeteoriteZigzag extends Meteorite {
 
 	@Override
 	public int getVitesse() {
-		return Properties.METEORITE_ZIGZAG.getVitesse();
+		return MeteoritesProperties.METEORITE_ZIGZAG.getVitesse();
 	}
 
 	@Override
 	public int getTaille() {
-		return Properties.METEORITE_ZIGZAG.getTaille();
+		return MeteoritesProperties.METEORITE_ZIGZAG.getTaille();
 	}
 
 	@Override
 	public int getDegat() {
-		return Properties.METEORITE_ZIGZAG.getDegat();
+		return MeteoritesProperties.METEORITE_ZIGZAG.getDegat();
 	}
 
 	@Override
 	public int getValeur() {
-		return Properties.METEORITE_ZIGZAG.getValeur();
+		return MeteoritesProperties.METEORITE_ZIGZAG.getValeur();
 
 	}
 

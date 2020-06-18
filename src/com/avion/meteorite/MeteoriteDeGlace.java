@@ -11,22 +11,22 @@ public class MeteoriteDeGlace extends Meteorite {
 
 	@Override
 	public int getVitesse() {
-		return Properties.METEORITE_DE_GLACE.getVitesse();
+		return MeteoritesProperties.METEORITE_DE_GLACE.getVitesse();
 	}
 
 	@Override
 	public int getDegat() {
-		return Properties.METEORITE_DE_GLACE.getDegat();
+		return MeteoritesProperties.METEORITE_DE_GLACE.getDegat();
 	}
 
 	@Override
 	public int getTaille() {
-		return Properties.METEORITE_DE_GLACE.getTaille();
+		return MeteoritesProperties.METEORITE_DE_GLACE.getTaille();
 	}
 
 	@Override
 	public int getValeur() {
-		return Properties.METEORITE_DE_GLACE.getValeur();
+		return MeteoritesProperties.METEORITE_DE_GLACE.getValeur();
 	}
 
 	@Override

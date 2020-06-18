@@ -181,7 +181,7 @@ public class Controller implements KeyListener {
 			break;
 		}
 		if (pos.x >= Constante.WIDTH - vaisseau.getWidth() || pos.x < 0
-				|| pos.y >= Constante.HEIGHT - vaisseau.getHeight() - Constante.HEIGHT_CLAVIER || pos.y < 0)
+				|| pos.y >= Constante.HEIGHT - vaisseau.getHeight() - Constante.HEIGHT_CLAVIER - 90 || pos.y < 0)
 			return;
 
 		vaisseau.setLocation(pos);
