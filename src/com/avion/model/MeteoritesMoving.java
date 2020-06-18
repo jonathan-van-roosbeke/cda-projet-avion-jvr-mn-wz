@@ -43,25 +43,6 @@ public class MeteoritesMoving extends JLabel {
 			@Override
 			public void run() {
 				while (life > 0) {
-					if (CalculateDistance.isCollided(posX, posY, meteorite.getTaille(), spacecraft)) {
-
-						explosion.setLocation(spacecraft.getX(), spacecraft.getY());
-						add(explosion);
-						revalidate();
-					}
-
-					posY += meteorite.getVitesse();
-					if (posY + meteorite.getVitesse() > Constante.WIDTH + meteorite.getTaille()
-							+ Constante.HEIGHT_CLAVIER) {
-
-						posY = -meteorite.getTaille();
-						posX = randomX.nextInt(Constante.WIDTH - meteorite.getTaille());
-						System.out.println("int " + (posY - 200));
-						Info.setScore(meteorite.getScore() + Info.getScore());
-						if (meteorite instanceof MeteoriteDeGlace) {
-							((MeteoriteDeGlace) meteorite).setTaille();
-						}
-					}
 					move(meteorite, spacecraft, explosion);
 					repaint();
 					try {
@@ -92,6 +73,7 @@ public class MeteoritesMoving extends JLabel {
 		if (positionMeteoriteY + meteorite.getVitesse() > Constante.WIDTH + meteorite.getTaille()
 				+ Constante.HEIGHT_CLAVIER) {
 
+			Info.setScore(meteorite.getScore() + Info.getScore());
 			positionMeteoriteY = -meteorite.getTaille();
 			positionMeteoriteX = randomX.nextInt(Constante.WIDTH - meteorite.getTaille());
 			posXZigZag = meteorite instanceof MeteoriteZigzag ? positionMeteoriteX : posXZigZag;
