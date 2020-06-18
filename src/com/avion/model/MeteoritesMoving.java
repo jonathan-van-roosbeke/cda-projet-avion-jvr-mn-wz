@@ -41,9 +41,9 @@ public class MeteoritesMoving extends JLabel {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-				while (!CalculateDistance.isCollided(posX, posY, meteorite.getTaille(), spacecraft) && life > 0) {
+//				while (!CalculateDistance.isCollided(posX, posY, meteorite.getTaille(), spacecraft) && life > 0) {
 
-//				while (life > 0) {
+				while (life > 0) {
 					if (CalculateDistance.isCollided(posX, posY, meteorite.getTaille(), spacecraft)) {
 						explosion.setLocation(spacecraft.getX(), spacecraft.getY());
 						add(explosion);
@@ -86,22 +86,5 @@ public class MeteoritesMoving extends JLabel {
 	public static int getScore() {
 		return score;
 	}
-
-//	if (meteorite instanceof MeteoriteSimple) {
-//		score += 2;
-//	}
-//	if (meteorite instanceof MeteoriteDeFeu) {
-//		score += 1;
-//	}
-//	if (meteorite instanceof MeteoriteDeGlace) {
-//		score += 3;
-//	}
-//	if (meteorite instanceof MeteoriteIceberg) {
-//		score += 4;
-//	}
-//	if (meteorite instanceof MeteoriteZigzag) {
-//		score += 5;
-//	}
-//	Info.setScore(score);
 
 }
