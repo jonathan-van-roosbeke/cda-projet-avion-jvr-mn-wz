@@ -46,6 +46,7 @@ public class Controller implements KeyListener {
 			if (Welcome.isChecked) {
 				affichageFleche(1);
 			}
+			affichageFleche(1);
 			ver = VERTICAL.UP;
 			break;
 
@@ -53,6 +54,7 @@ public class Controller implements KeyListener {
 			if (Welcome.isChecked) {
 				affichageFleche(2);
 			}
+			affichageFleche(2);
 			ver = VERTICAL.DOWN;
 			break;
 
@@ -60,6 +62,7 @@ public class Controller implements KeyListener {
 			if (Welcome.isChecked) {
 				affichageFleche(0);
 			}
+			affichageFleche(0);
 			changeImageDirection(1);
 			hor = HORIZONTAL.LEFT;
 			break;
@@ -68,6 +71,7 @@ public class Controller implements KeyListener {
 			if (Welcome.isChecked) {
 				affichageFleche(3);
 			}
+			affichageFleche(3);
 			changeImageDirection(2);
 			hor = HORIZONTAL.RIGHT;
 			break;
@@ -78,25 +82,18 @@ public class Controller implements KeyListener {
 
 		if (ver == null && hor == HORIZONTAL.RIGHT) {
 			dir = DIRECTION.RIGHT;
-
 		} else if (ver == null && hor == HORIZONTAL.LEFT) {
 			dir = DIRECTION.LEFT;
-
 		} else if (hor == null && ver == VERTICAL.UP) {
 			dir = DIRECTION.UP;
-
 		} else if (hor == null && ver == VERTICAL.DOWN) {
 			dir = DIRECTION.DOWN;
-
 		} else if (hor == HORIZONTAL.RIGHT && ver == VERTICAL.UP) {
 			dir = DIRECTION.UP_RIGHT;
-
 		} else if (hor == HORIZONTAL.RIGHT && ver == VERTICAL.DOWN) {
 			dir = DIRECTION.DOWN_RIGHT;
-
 		} else if (hor == HORIZONTAL.LEFT && ver == VERTICAL.UP) {
 			dir = DIRECTION.UP_LEFT;
-
 		} else if (hor == HORIZONTAL.LEFT && ver == VERTICAL.DOWN) {
 			dir = DIRECTION.DOWN_LEFT;
 		}

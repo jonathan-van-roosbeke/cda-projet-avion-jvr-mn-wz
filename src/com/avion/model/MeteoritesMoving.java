@@ -12,6 +12,7 @@ import com.avion.constante.AnimatedPictures;
 import com.avion.constante.Constante;
 import com.avion.meteorite.Meteorite;
 import com.avion.meteorite.MeteoriteDeGlace;
+import com.avion.view.Info;
 
 public class MeteoritesMoving extends JLabel {
 	private Random randomX;
@@ -19,6 +20,12 @@ public class MeteoritesMoving extends JLabel {
 	private int posX;
 	private int posY;
 	private static int nombreDeVie = 100;
+	private Spacecraft spacecraft;
+	private Meteorite meteorite;
+	private static int cmpt;
+	private int id;
+	private static int life = 100;
+	private static int score;
 
 	public MeteoritesMoving(Meteorite meteorite, Spacecraft spacecraft) {
 		JLabel explosion = new JLabel(new ImageIcon(AnimatedPictures.tExplosion));
@@ -31,13 +38,16 @@ public class MeteoritesMoving extends JLabel {
 		posY = 0;
 
 		new Thread(new Runnable() {
-
+			@Override
 			public void run() {
-				while (nombreDeVie > 0) {
+				while (!CalculateDistance.isCollided(posX, posY, meteorite.getTaille(), spacecraft) && life > 0) {
+
+//				while (life > 0) {
 					if (CalculateDistance.isCollided(posX, posY, meteorite.getTaille(), spacecraft)) {
 						explosion.setLocation(spacecraft.getX(), spacecraft.getY());
 						add(explosion);
 						revalidate();
+
 					}
 
 					posY += meteorite.getVitesse();
@@ -59,6 +69,9 @@ public class MeteoritesMoving extends JLabel {
 					remove(explosion);
 
 				}
+				life -= 20;
+				Info.setLife(life);
+				System.out.println("booom");
 			}
 
 		}).start();
@@ -69,4 +82,30 @@ public class MeteoritesMoving extends JLabel {
 		super.paintComponent(g);
 		g.drawImage(image, posX, posY, null);
 	}
+
+	public static int getLife() {
+		return life;
+	}
+
+	public static int getScore() {
+		return score;
+	}
+
+//	if (meteorite instanceof MeteoriteSimple) {
+//		score += 2;
+//	}
+//	if (meteorite instanceof MeteoriteDeFeu) {
+//		score += 1;
+//	}
+//	if (meteorite instanceof MeteoriteDeGlace) {
+//		score += 3;
+//	}
+//	if (meteorite instanceof MeteoriteIceberg) {
+//		score += 4;
+//	}
+//	if (meteorite instanceof MeteoriteZigzag) {
+//		score += 5;
+//	}
+//	Info.setScore(score);
+
 }
