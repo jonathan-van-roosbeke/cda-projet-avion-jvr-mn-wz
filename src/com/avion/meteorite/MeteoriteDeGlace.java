@@ -9,8 +9,8 @@ public class MeteoriteDeGlace extends Meteorite {
 
 	public MeteoriteDeGlace() {
 		super();
-		taille = new Random().nextInt(MeteoritesProperties.METEORITE_DE_FEU.getTaille())
-				+ MeteoritesProperties.METEORITE_SIMPLE.getTaille();
+		taille = MeteoritesProperties.METEORITE_DE_FEU.getTaille()
+				- new Random().nextInt(MeteoritesProperties.METEORITE_SIMPLE.getTaille());
 	}
 
 	@Override
@@ -26,8 +26,12 @@ public class MeteoriteDeGlace extends Meteorite {
 	@Override
 	public int getTaille() {
 
-		System.out.println(taille);
 		return taille;
+	}
+
+	public void setTaille() {
+		taille = MeteoritesProperties.METEORITE_DE_FEU.getTaille()
+				- new Random().nextInt(MeteoritesProperties.METEORITE_SIMPLE.getTaille());
 	}
 
 	@Override
@@ -39,5 +43,4 @@ public class MeteoriteDeGlace extends Meteorite {
 	public NoAnimatedPictures getImageUrl() {
 		return NoAnimatedPictures.METEOR_GLACE;
 	}
-
 }

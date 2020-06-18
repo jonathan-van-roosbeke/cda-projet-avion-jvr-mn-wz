@@ -12,6 +12,7 @@ import com.avion.constante.Constante;
 import com.avion.constante.Constante.DIRECTION;
 import com.avion.constante.Constante.HORIZONTAL;
 import com.avion.constante.Constante.VERTICAL;
+import com.avion.dialog.Welcome;
 import com.avion.model.Spacecraft;
 import com.avion.outils.Outils;
 import com.avion.view.GuiClavier;
@@ -29,6 +30,10 @@ public class Controller implements KeyListener {
 		this.vaisseau = pVaisseau;
 	}
 
+	public Controller(Spacecraft pVaisseau) {
+		this.vaisseau = pVaisseau;
+	}
+
 	@Override
 	public void keyTyped(KeyEvent e) {
 
@@ -38,22 +43,34 @@ public class Controller implements KeyListener {
 	public void keyPressed(KeyEvent e) {
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_UP:
+			if (Welcome.isChecked) {
+				affichageFleche(1);
+			}
 			affichageFleche(1);
 			ver = VERTICAL.UP;
 			break;
 
 		case KeyEvent.VK_DOWN:
+			if (Welcome.isChecked) {
+				affichageFleche(2);
+			}
 			affichageFleche(2);
 			ver = VERTICAL.DOWN;
 			break;
 
 		case KeyEvent.VK_LEFT:
+			if (Welcome.isChecked) {
+				affichageFleche(0);
+			}
 			affichageFleche(0);
 			changeImageDirection(1);
 			hor = HORIZONTAL.LEFT;
 			break;
 
 		case KeyEvent.VK_RIGHT:
+			if (Welcome.isChecked) {
+				affichageFleche(3);
+			}
 			affichageFleche(3);
 			changeImageDirection(2);
 			hor = HORIZONTAL.RIGHT;
@@ -88,23 +105,31 @@ public class Controller implements KeyListener {
 	public void keyReleased(KeyEvent e) {
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_UP:
-			upReleased(1);
+			if (Welcome.isChecked) {
+				upReleased(1);
+			}
 			ver = null;
 			break;
 
 		case KeyEvent.VK_DOWN:
-			upReleased(2);
+			if (Welcome.isChecked) {
+				upReleased(2);
+			}
 			ver = null;
 			break;
 
 		case KeyEvent.VK_LEFT:
-			upReleased(0);
+			if (Welcome.isChecked) {
+				upReleased(0);
+			}
 			resetImageDirection();
 			hor = null;
 			break;
 
 		case KeyEvent.VK_RIGHT:
-			upReleased(3);
+			if (Welcome.isChecked) {
+				upReleased(3);
+			}
 			resetImageDirection();
 			hor = null;
 			break;
@@ -180,12 +205,22 @@ public class Controller implements KeyListener {
 			pos.y -= Constante.VAISSEAU_SPEED;
 			break;
 		}
-		if (pos.x >= Constante.WIDTH - vaisseau.getWidth() || pos.x < 0
-				|| pos.y >= Constante.HEIGHT - vaisseau.getHeight() - Constante.HEIGHT_CLAVIER - 90 || pos.y < 0)
-			return;
+		if (Welcome.isChecked) {
+			if (pos.x >= Constante.WIDTH - vaisseau.getWidth() || pos.x < 0
+					|| pos.y >= Constante.HEIGHT - vaisseau.getHeight() - Constante.HEIGHT_CLAVIER - 90 || pos.y < 0)
+				return;
 
-		vaisseau.setLocation(pos);
-		vaisseau.validate();
+			vaisseau.setLocation(pos);
+			vaisseau.validate();
+		} else {
+			if (pos.x >= Constante.WIDTH - vaisseau.getWidth() || pos.x < 0
+					|| pos.y >= Constante.HEIGHT - Constante.HEIGHT_CLAVIER - 40 || pos.y < 0)
+				return;
+
+			vaisseau.setLocation(pos);
+			vaisseau.validate();
+		}
+
 	}
 
 	private void changeImageDirection(int pIndex) {

@@ -11,7 +11,7 @@ public class Replay {
 		int dialogResult = JOptionPane.showConfirmDialog(frame, "Replay?", "Replay", dialogButton);
 		if (dialogResult == 0) {
 			System.out.println("Yes option");
-			GameView gameView = new GameView();
+			GameView gameView = new GameView(true);
 			gameView.init();
 		} else {
 			System.out.println("No Option");

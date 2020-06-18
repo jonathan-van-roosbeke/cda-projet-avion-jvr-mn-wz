@@ -11,11 +11,14 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.Toolkit;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
+import javax.swing.JCheckBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -24,6 +27,8 @@ import javax.swing.JTextField;
 import com.avion.constante.Constante;
 
 public class Welcome extends JDialog {
+
+	public static boolean isChecked;
 
 	public Welcome() {
 		final JDialog modelDialog = new JDialog(this, "Bienvenue", Dialog.ModalityType.TOOLKIT_MODAL);
@@ -57,23 +62,46 @@ public class Welcome extends JDialog {
 		text.setForeground(Constante.TEXT_COLOR);
 
 		error.setForeground(Color.RED);
-		error.setFont(new Font("Roboto", Font.ITALIC, 20));
+		error.setFont(new Font("Roboto", Font.ITALIC, 12));
+		error.setHorizontalAlignment(JLabel.CENTER);
 
 		textsPanenl.add(text);
 		textsPanenl.add(saisie);
 
-		JLabel imageLabel = new JLabel(new ImageIcon(getScaledImage(new ImageIcon("ok.png").getImage(), 40, 40)));
-		imageLabel.addMouseListener(new WelcomeController(saisie, error));
+		JLabel imageLabel = new JLabel(new ImageIcon(getScaledImage(new ImageIcon("ok.png").getImage(), 20, 20)));
 		textsPanenl.add(imageLabel);
-		saisie.addKeyListener(new WelcomeController(saisie, error));
+
+		JCheckBox checkBoxClavier = new JCheckBox("Affichage clavier");
+		checkBoxClavier.setBackground(Constante.BACKGROUND_COLOR);
+		checkBoxClavier.setHorizontalAlignment(JLabel.CENTER);
+		checkBoxClavier.setFont(new Font("Roboto", Font.CENTER_BASELINE, 15));
+		checkBoxClavier.setForeground(Color.WHITE);
 
 		mainPanel.add(error, BorderLayout.SOUTH);
 		mainPanel.add(textsPanenl, BorderLayout.NORTH);
+		mainPanel.add(checkBoxClavier, BorderLayout.CENTER);
+
+		// verifie si la checkbox est active
+		checkBoxClavier.addItemListener(new ItemListener() {
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				if (e.getStateChange() == ItemEvent.SELECTED) {
+					isChecked = true;
+
+				} else {
+					isChecked = false;
+				}
+			}
+		});
+
+		imageLabel.addMouseListener(new WelcomeController(saisie, error));
+		saisie.addKeyListener(new WelcomeController(saisie, error));
 
 		dialogContainer.add(mainPanel);
 		modelDialog.setBounds((Toolkit.getDefaultToolkit().getScreenSize().width - 250) / 2,
-				(Toolkit.getDefaultToolkit().getScreenSize().height - 80) / 2, 350, 250);
+				(Toolkit.getDefaultToolkit().getScreenSize().height - 80) / 2, 350, 150);
 		modelDialog.setVisible(true);
+
 	}
 
 	private Image getScaledImage(Image srcImg, int w, int h) {
