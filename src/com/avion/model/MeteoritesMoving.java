@@ -54,6 +54,8 @@ public class MeteoritesMoving extends JLabel {
 
 						posY = -meteorite.getTaille();
 						posX = randomX.nextInt(Constante.WIDTH - meteorite.getTaille());
+						System.out.println("int " + (posY - 200));
+						Info.setScore(meteorite.getScore() + Info.getScore());
 						if (meteorite instanceof MeteoriteDeGlace) {
 							((MeteoriteDeGlace) meteorite).setTaille();
 						}

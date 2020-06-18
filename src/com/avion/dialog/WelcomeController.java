@@ -71,5 +71,4 @@ public class WelcomeController extends MouseAdapter implements KeyListener {
 	@Override
 	public void keyReleased(KeyEvent e) {
 	}
-
 }
