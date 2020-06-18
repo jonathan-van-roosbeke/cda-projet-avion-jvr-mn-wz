@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 import java.util.Random;
 
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import com.avion.collision.CalculateDistance;
@@ -14,6 +15,7 @@ import com.avion.meteorite.Meteorite;
 import com.avion.meteorite.MeteoriteDeGlace;
 import com.avion.meteorite.MeteoriteZigzag;
 import com.avion.view.Info;
+import com.avion.view.LifeBar;
 
 public class MeteoritesMoving extends JLabel {
 	private Random randomX;
@@ -21,12 +23,21 @@ public class MeteoritesMoving extends JLabel {
 	private int positionMeteoriteX;
 	private int positionMeteoriteY;
 	private static int life = 100;
+	private Spacecraft spacecraft;
+	private Meteorite meteorite;
+	private static int cmpt;
+	private int id;
 	private static int score;
+	private static boolean display = true;
+	private static JLabel explosion;
+	private static boolean continuer = true;
+	private static JFrame frame;
 
-	private int posXZigZag;
+	private int positionMeteoriteXZigZag;
 
-	public MeteoritesMoving(Meteorite meteorite, Spacecraft spacecraft) {
-		JLabel explosion = new JLabel(new ImageIcon(AnimatedPictures.tExplosion));
+	public MeteoritesMoving(Meteorite meteorite, Spacecraft spacecraft, JFrame frame) {
+		frame = frame;
+		explosion = new JLabel(new ImageIcon(AnimatedPictures.tExplosion));
 		explosion.setSize(100, 100);
 		randomX = new Random();
 		setSize(Constante.WIDTH, Constante.HEIGHT);
@@ -34,7 +45,7 @@ public class MeteoritesMoving extends JLabel {
 		image = meteorite.getImage();
 		positionMeteoriteX = randomX.nextInt(Constante.WIDTH - meteorite.getTaille());
 		positionMeteoriteY = 0;
-		posXZigZag = meteorite instanceof MeteoriteZigzag ? positionMeteoriteX : posXZigZag;
+		positionMeteoriteXZigZag = meteorite instanceof MeteoriteZigzag ? positionMeteoriteX : positionMeteoriteXZigZag;
 		startPlaying(meteorite, spacecraft, explosion);
 	}
 
@@ -42,8 +53,47 @@ public class MeteoritesMoving extends JLabel {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-				while (life > 0) {
-					move(meteorite, spacecraft, explosion);
+				int counter = 1;
+				while (continuer) {
+					if (life <= 0) {
+						counter++;
+						counter %= 5;
+
+						synchronized (explosion) {
+							if (counter == 1) {
+//								display = false;
+								Replay replay = new Replay(frame);
+								System.out.println("Replay?");
+								continuer = replay.getResult() == 0;
+							}
+						}
+						positionMeteoriteY = 0;
+						life = 100;
+//						display = true;
+						Info.setLife(life);
+					}
+					LifeBar.setLifeBar(life);
+					if (CalculateDistance.isCollided(positionMeteoriteX, positionMeteoriteY, meteorite.getTaille(),
+							spacecraft)) {
+
+						life -= meteorite.getDegat();
+						Info.setLife(life);
+
+						explosion.setLocation(spacecraft.getX(), spacecraft.getY());
+						add(explosion);
+						revalidate();
+					}
+
+					positionMeteoriteY += meteorite.getVitesse();
+					if (positionMeteoriteY + meteorite.getVitesse() > Constante.WIDTH + meteorite.getTaille()
+							+ Constante.HEIGHT_CLAVIER) {
+
+						positionMeteoriteY = -meteorite.getTaille();
+						positionMeteoriteX = randomX.nextInt(Constante.WIDTH - meteorite.getTaille());
+						if (meteorite instanceof MeteoriteDeGlace) {
+							((MeteoriteDeGlace) meteorite).setTaille();
+						}
+					}
 					repaint();
 					try {
 						Thread.sleep(50);
@@ -52,6 +102,8 @@ public class MeteoritesMoving extends JLabel {
 					}
 					remove(explosion);
 				}
+				System.out.println("booom");
+
 			}
 		}).start();
 	}
@@ -65,8 +117,8 @@ public class MeteoritesMoving extends JLabel {
 			revalidate();
 		}
 		if (meteorite instanceof MeteoriteZigzag) {
-			posXZigZag += 10;
-			positionMeteoriteX += ((posXZigZag / Constante.WIDTH) % 2 == 0) ? 10 : -10;
+			positionMeteoriteXZigZag += 10;
+			positionMeteoriteX += ((positionMeteoriteXZigZag / Constante.WIDTH) % 2 == 0) ? 10 : -10;
 		}
 
 		positionMeteoriteY += meteorite.getVitesse();
@@ -76,7 +128,8 @@ public class MeteoritesMoving extends JLabel {
 			Info.setScore(meteorite.getScore() + Info.getScore());
 			positionMeteoriteY = -meteorite.getTaille();
 			positionMeteoriteX = randomX.nextInt(Constante.WIDTH - meteorite.getTaille());
-			posXZigZag = meteorite instanceof MeteoriteZigzag ? positionMeteoriteX : posXZigZag;
+			positionMeteoriteXZigZag = meteorite instanceof MeteoriteZigzag ? positionMeteoriteX
+					: positionMeteoriteXZigZag;
 
 			if (meteorite instanceof MeteoriteDeGlace) {
 				((MeteoriteDeGlace) meteorite).setTaille();

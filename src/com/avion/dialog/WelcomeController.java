@@ -32,7 +32,7 @@ public class WelcomeController extends MouseAdapter implements KeyListener {
 			name = saisie.getText();
 			Outils.writeFile(name + ";");
 			date = Outils.getDate();
-			new GameView(activeGuiClavier);
+			new GameView();
 		} else {
 			saisie.setText("");
 			error.setText("Erreur de saisie");
@@ -60,7 +60,7 @@ public class WelcomeController extends MouseAdapter implements KeyListener {
 				name = saisie.getText();
 				Outils.writeFile(name + ";");
 				date = Outils.getDate();
-				new GameView(activeGuiClavier);
+				new GameView();
 			} else {
 				saisie.setText("");
 				error.setText("Erreur de saisie");
