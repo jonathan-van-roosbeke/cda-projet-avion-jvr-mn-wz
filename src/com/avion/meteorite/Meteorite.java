@@ -20,7 +20,6 @@ public abstract class Meteorite extends JLabel {
 	private static Meteorite[] m = { new MeteoriteSimple(), new MeteoriteDeFeu(), new MeteoriteZigzag(),
 			new MeteoriteDeGlace(), new MeteoriteIceberg() };
 
-//	private static Meteorite[] m = { new MeteoriteSimple() };
 	public static List<Meteorite> meteorites = new ArrayList<>(Arrays.asList(m));
 
 	public Meteorite() {
