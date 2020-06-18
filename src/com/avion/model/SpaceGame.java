@@ -12,13 +12,13 @@ public class SpaceGame extends JLabel {
 
 	public SpaceGame() {
 
+		vaisseau = new Spacecraft();
 		for (Meteorite meteorite : Meteorite.meteorites) {
-			this.add(new MeteoritesMoving(meteorite));
+			this.add(new MeteoritesMoving(meteorite, vaisseau));
 		}
 		this.setLayout(null);
 		ScrollingBackground background = new ScrollingBackground();
 		this.add(background);
-		vaisseau = new Spacecraft();
 		this.add(vaisseau);
 		ScrollingBackground bg = new ScrollingBackground();
 		bg.setSize(new Dimension(Constante.WIDTH, Constante.HEIGHT));

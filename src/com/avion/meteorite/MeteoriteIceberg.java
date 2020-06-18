@@ -10,22 +10,22 @@ public class MeteoriteIceberg extends Meteorite {
 
 	@Override
 	public int getVitesse() {
-		return Properties.METEORITE_ICEBERG.getVitesse();
+		return MeteoritesProperties.METEORITE_ICEBERG.getVitesse();
 	}
 
 	@Override
 	public int getTaille() {
-		return Properties.METEORITE_ICEBERG.getTaille();
+		return MeteoritesProperties.METEORITE_ICEBERG.getTaille();
 	}
 
 	@Override
 	public int getDegat() {
-		return Properties.METEORITE_ICEBERG.getDegat();
+		return MeteoritesProperties.METEORITE_ICEBERG.getDegat();
 	}
 
 	@Override
 	public int getValeur() {
-		return Properties.METEORITE_ICEBERG.getValeur();
+		return MeteoritesProperties.METEORITE_ICEBERG.getValeur();
 	}
 
 	@Override

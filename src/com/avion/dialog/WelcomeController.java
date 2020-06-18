@@ -1,5 +1,7 @@
 package com.avion.dialog;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -10,11 +12,11 @@ import javax.swing.SwingUtilities;
 import com.avion.outils.Outils;
 import com.avion.view.GameView;
 
-public class WelcomeController extends MouseAdapter {
+public class WelcomeController extends MouseAdapter implements KeyListener {
 
 	private JTextField saisie;
 	private JLabel error;
-	private String date;
+	private static String date;
 	private static String name;
 
 	public WelcomeController(JTextField saisie, JLabel error) {
@@ -26,8 +28,8 @@ public class WelcomeController extends MouseAdapter {
 	public void mouseClicked(MouseEvent e) {
 		if (saisie.getText() != null && WelcomeModel.canPlay(saisie.getText())) {
 			SwingUtilities.getWindowAncestor(((JLabel) e.getSource()).getParent()).dispose();
-			Outils.writeFile(saisie.getText() + ";");
 			name = saisie.getText();
+			Outils.writeFile(name + ";");
 			date = Outils.getDate();
 			new GameView();
 		} else {
@@ -42,6 +44,31 @@ public class WelcomeController extends MouseAdapter {
 
 	public static String getName() {
 		return name;
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		error.setText("");
+		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+			if (saisie.getText() != null && WelcomeModel.canPlay(saisie.getText())) {
+				SwingUtilities.getWindowAncestor(((JTextField) e.getSource()).getParent()).dispose();
+				name = saisie.getText();
+				Outils.writeFile(name + ";");
+				date = Outils.getDate();
+				new GameView();
+			} else {
+				saisie.setText("");
+				error.setText("Erreur de saisie");
+			}
+		}
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
 	}
 
 }
