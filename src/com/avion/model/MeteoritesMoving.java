@@ -41,15 +41,16 @@ public class MeteoritesMoving extends JLabel {
 					}
 
 					posY += meteorite.getVitesse();
-					if (posY + meteorite.getVitesse() > Constante.WIDTH + +meteorite.getTaille()) {
+					if (posY + meteorite.getVitesse() > Constante.WIDTH + meteorite.getTaille()
+							+ Constante.HEIGHT_CLAVIER) {
 
 						posY = -meteorite.getTaille();
+						System.out.println(posY);
 						posX = randomX.nextInt(Constante.WIDTH - meteorite.getTaille());
 						if (meteorite instanceof MeteoriteDeGlace) {
 							((MeteoriteDeGlace) meteorite).setTaille();
 						}
 					}
-					posY %= Constante.WIDTH + meteorite.getTaille();
 					repaint();
 					try {
 						Thread.sleep(50);

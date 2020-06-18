@@ -49,7 +49,7 @@ public abstract class Meteorite extends JLabel {
 
 	public abstract int getTaille();
 
-	public abstract int getValeur();
+	public abstract int getScore();
 
 	public abstract int getVitesse();
 
