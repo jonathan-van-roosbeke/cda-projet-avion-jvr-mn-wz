@@ -1,7 +1,6 @@
 package com.avion.model;
 
 import java.awt.BorderLayout;
-import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -11,8 +10,10 @@ import com.avion.constante.Constante;
 
 public class Spacecraft extends JLabel {
 
-	private BufferedImage imgVaisseau;
-	private BufferedImage imgReacteur;
+	/**
+	 * Generer automatiquement pour eviter les warning
+	 */
+	private static final long serialVersionUID = 1L;
 	private JLabel vaisseau;
 	private JLabel reacteur;
 	private int choixImgVaisseau;
@@ -29,14 +30,6 @@ public class Spacecraft extends JLabel {
 		this.add(reacteur, "South");
 
 		this.setSize(Constante.VAISSEAU_WIDTH, Constante.VAISSEAU_HEIGHT + 18);
-	}
-
-	public BufferedImage getImgVaisseau() {
-		return imgVaisseau;
-	}
-
-	public void setChoixVaisseau(int pChoix) {
-		this.choixImgVaisseau = pChoix;
 	}
 
 	public JLabel getVaisseau() {

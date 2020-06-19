@@ -9,18 +9,19 @@ import javax.swing.JPanel;
 import com.avion.constante.Constante;
 
 public class GuiInfo extends JPanel {
-	static LifeBar lifeBar;
+	private static final long serialVersionUID = 1L;
+	/**
+	 * 
+	 */
+	static LifeBar vLifeBar;
 
 	public GuiInfo() {
 		setPreferredSize(new Dimension(Constante.WIDTH, 60));
 		setLayout(new GridLayout(2, 1));
-
 		setBackground(new Color(6, 6, 16));
-		Info info = new Info();
-		lifeBar = new LifeBar();
 
-		this.add(info);
-		this.add(lifeBar);
+		this.add(new Info());
+		this.add(new LifeBar());
 
 		setVisible(true);
 	}

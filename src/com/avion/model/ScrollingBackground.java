@@ -8,15 +8,16 @@ import javax.swing.JLabel;
 
 public class ScrollingBackground extends JLabel implements Runnable {
 
-	private Background backOne;
-	private Background backTwo;
+	/**
+	 * Generer automatiquement pour eviter les warning
+	 */
+	private static final long serialVersionUID = 1L;
+	private static Background backOne = new Background();
+	private static Background backTwo = new Background(0, backOne.getImageHeight());
 
-	private BufferedImage back;
+	private static BufferedImage back;
 
 	public ScrollingBackground() {
-		backOne = new Background();
-		backTwo = new Background(0, backOne.getImageHeight());
-
 		new Thread(this).start();
 		setVisible(true);
 	}
@@ -24,11 +25,14 @@ public class ScrollingBackground extends JLabel implements Runnable {
 	@Override
 	public void run() {
 		try {
-			while (true) {
-				Thread.currentThread().sleep(30);
+			int k = Integer.MAX_VALUE;
+			while (k > 0) {
+				Thread.sleep(30);
 				repaint();
+				k--;
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -37,17 +41,14 @@ public class ScrollingBackground extends JLabel implements Runnable {
 		paint(window);
 	}
 
+	@Override
 	public void paint(Graphics window) {
 		Graphics2D twoD = (Graphics2D) window;
-
 		if (back == null)
 			back = (BufferedImage) (createImage(getWidth(), getHeight()));
-
 		Graphics buffer = back.createGraphics();
-
 		backOne.draw(buffer);
 		backTwo.draw(buffer);
-
 		twoD.drawImage(back, null, 0, 0);
 	}
 }

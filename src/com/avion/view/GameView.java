@@ -14,7 +14,11 @@ import com.avion.model.SpaceGame;
 
 public class GameView extends JFrame {
 
-	private Image img;
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * 
+	 */
 
 	public GameView() {
 		init();
@@ -44,9 +48,6 @@ public class GameView extends JFrame {
 		if (Welcome.isChecked) {
 			this.getContentPane().add(clavier, BorderLayout.SOUTH);
 		}
-
-//		new Replay(gameView);
-
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 

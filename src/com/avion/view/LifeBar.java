@@ -13,39 +13,38 @@ import com.avion.model.MeteoritesMoving;
 import com.avion.outils.MakeImage;
 
 public class LifeBar extends JPanel {
+	private static final long serialVersionUID = 1L;
 
-	private static JLabel l1;
-	private static JLabel l2;
-	private static JLabel l3;
-	private static JLabel l4;
-	private static JLabel l5;
+	/**
+	 * 
+	 */
+	private static JLabel l1 = new JLabel();
+	private static JLabel l2 = new JLabel();
+	private static JLabel l3 = new JLabel();
+	private static JLabel l4 = new JLabel();
+	private static JLabel l5 = new JLabel();
 
 	public LifeBar() {
 		setLayout(new GridLayout(1, 5));
 
 		setBackground(new Color(6, 6, 16));
 
-		l1 = new JLabel();
 		l1.setIcon(new ImageIcon(MakeImage.getTheImage(NoAnimatedPictures.VIE_01_ON)));
 		l1.setHorizontalAlignment(SwingConstants.CENTER);
 		this.add(l1);
 
-		l2 = new JLabel();
 		l2.setIcon(new ImageIcon(MakeImage.getTheImage(NoAnimatedPictures.VIE_02_ON)));
 		l2.setHorizontalAlignment(SwingConstants.CENTER);
 		this.add(l2);
 
-		l3 = new JLabel();
 		l3.setIcon(new ImageIcon(MakeImage.getTheImage(NoAnimatedPictures.VIE_03_ON)));
 		l3.setHorizontalAlignment(SwingConstants.CENTER);
 		this.add(l3);
 
-		l4 = new JLabel();
 		l4.setIcon(new ImageIcon(MakeImage.getTheImage(NoAnimatedPictures.VIE_04_ON)));
 		l4.setHorizontalAlignment(SwingConstants.CENTER);
 		this.add(l4);
 
-		l5 = new JLabel();
 		l5.setIcon(new ImageIcon(MakeImage.getTheImage(NoAnimatedPictures.VIE_05_ON)));
 		l5.setHorizontalAlignment(SwingConstants.CENTER);
 		this.add(l5);

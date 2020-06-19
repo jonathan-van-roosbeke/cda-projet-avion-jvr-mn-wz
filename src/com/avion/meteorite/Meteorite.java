@@ -14,14 +14,17 @@ import com.avion.constante.NoAnimatedPictures;
 import com.avion.outils.MakeImage;
 
 public abstract class Meteorite extends JLabel {
+	private static final long serialVersionUID = 1L;
+	/**
+	 * 
+	 */
 	private ImageIcon image;
 	NoAnimatedPictures imageUrl;
 	BufferedImage bufferedImage;
-	private static Meteorite[] m = { new MeteoriteSimple(), new MeteoriteDeFeu(), new MeteoriteZigzag(),
+	private static final Meteorite[] m = { new MeteoriteSimple(), new MeteoriteDeFeu(), new MeteoriteZigzag(),
 			new MeteoriteDeGlace(), new MeteoriteIceberg() };
-//	private static Meteorite[] m = { new MeteoriteDeGlace() };
 
-	public static List<Meteorite> meteorites = new ArrayList<>(Arrays.asList(m));
+	public static final List<Meteorite> meteorites = new ArrayList<>(Arrays.asList(m));
 
 	public Meteorite() {
 		this.imageUrl = getImageUrl();

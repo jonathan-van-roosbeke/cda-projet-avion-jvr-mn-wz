@@ -17,7 +17,6 @@ public class WelcomeController extends MouseAdapter implements KeyListener {
 	private JLabel error;
 	private static String date;
 	private static String name;
-	private boolean activeGuiClavier;
 
 	public WelcomeController(JTextField saisie, JLabel error) {
 		this.error = error;
@@ -46,6 +45,7 @@ public class WelcomeController extends MouseAdapter implements KeyListener {
 
 	@Override
 	public void keyTyped(KeyEvent e) {
+		// empty
 	}
 
 	@Override
@@ -65,5 +65,6 @@ public class WelcomeController extends MouseAdapter implements KeyListener {
 
 	@Override
 	public void keyReleased(KeyEvent e) {
+		// empty
 	}
 }

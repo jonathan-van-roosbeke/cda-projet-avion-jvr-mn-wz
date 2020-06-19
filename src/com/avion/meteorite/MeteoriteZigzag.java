@@ -3,6 +3,11 @@ package com.avion.meteorite;
 import com.avion.constante.NoAnimatedPictures;
 
 public class MeteoriteZigzag extends Meteorite {
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * 
+	 */
 
 	public MeteoriteZigzag() {
 		super();
