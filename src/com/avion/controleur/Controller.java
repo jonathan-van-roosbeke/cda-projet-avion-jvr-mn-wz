@@ -200,6 +200,9 @@ public class Controller implements KeyListener {
 			pos.x -= Constante.VAISSEAU_SPEED;
 			pos.y -= Constante.VAISSEAU_SPEED;
 			break;
+		default:
+			break;
+
 		}
 		if (Welcome.isChecked) {
 			if (pos.x >= Constante.WIDTH - vaisseau.getWidth() || pos.x < 0

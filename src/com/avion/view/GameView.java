@@ -16,7 +16,7 @@ public class GameView extends JFrame {
 
 	private Image img;
 
-	public GameView(boolean pActiveGuiClavier) {
+	public GameView() {
 		init();
 	}
 
@@ -31,7 +31,8 @@ public class GameView extends JFrame {
 		setResizable(false);
 
 		GuiInfo guiInfo = new GuiInfo();
-		SpaceGame spacegame = new SpaceGame();
+		SpaceGame spacegame = new SpaceGame(this);
+
 		this.getContentPane().add(guiInfo, BorderLayout.NORTH);
 		this.getContentPane().add(spacegame, BorderLayout.CENTER);
 		Controller controller;
@@ -41,6 +42,8 @@ public class GameView extends JFrame {
 		if (Welcome.isChecked) {
 			this.getContentPane().add(clavier, BorderLayout.SOUTH);
 		}
+
+//		new Replay(gameView);
 
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);

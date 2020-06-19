@@ -9,7 +9,6 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
-import com.avion.outils.Outils;
 import com.avion.view.GameView;
 
 public class WelcomeController extends MouseAdapter implements KeyListener {
@@ -30,16 +29,14 @@ public class WelcomeController extends MouseAdapter implements KeyListener {
 		if (saisie.getText() != null && WelcomeModel.canPlay(saisie.getText())) {
 			SwingUtilities.getWindowAncestor(((JLabel) e.getSource()).getParent()).dispose();
 			name = saisie.getText();
-			Outils.writeFile(name + ";");
-			date = Outils.getDate();
-			new GameView(activeGuiClavier);
+			new GameView();
 		} else {
 			saisie.setText("");
 			error.setText("Erreur de saisie");
 		}
 	}
 
-	public String getDate() {
+	public static String getDate() {
 		return date;
 	}
 
@@ -58,9 +55,7 @@ public class WelcomeController extends MouseAdapter implements KeyListener {
 			if (saisie.getText() != null && WelcomeModel.canPlay(saisie.getText())) {
 				SwingUtilities.getWindowAncestor(((JTextField) e.getSource()).getParent()).dispose();
 				name = saisie.getText();
-				Outils.writeFile(name + ";");
-				date = Outils.getDate();
-				new GameView(activeGuiClavier);
+				new GameView();
 			} else {
 				saisie.setText("");
 				error.setText("Erreur de saisie");

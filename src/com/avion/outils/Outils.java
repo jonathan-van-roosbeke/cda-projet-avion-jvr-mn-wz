@@ -3,11 +3,19 @@ package com.avion.outils;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.RandomAccessFile;
+import java.io.UnsupportedEncodingException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Collections;
 
 import javax.swing.ImageIcon;
 
@@ -83,4 +91,58 @@ public class Outils {
 		return dtf.format(LocalDateTime.now());
 	}
 
+	public static ArrayList readFile() {
+		String path = "temp/record.txt";
+
+		FileReader fr = null;
+
+		ArrayList<String> listName = new ArrayList<String>();
+		ArrayList<Integer> listScore = new ArrayList<Integer>();
+		ArrayList<String> listDate = new ArrayList<String>();
+		ArrayList<String> sorted = new ArrayList<String>(20);
+
+		try {
+			File file = new File(path);
+			FileInputStream fis = new FileInputStream(file);
+			InputStreamReader isr = new InputStreamReader(fis);
+			BufferedReader br = new BufferedReader(isr);
+
+			String str;
+			String[] line;
+
+			while ((str = br.readLine()) != null) {
+				line = str.split(";");
+				listName.add(line[0]);
+				listScore.add(Integer.parseInt(line[1]));
+				listDate.add(line[2]);
+			}
+
+			br.close();
+			isr.close();
+			fis.close();
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		Collections.sort(listScore, Collections.reverseOrder());
+		if (listScore.size() < 20) {
+			for (int i = 0; i < listScore.size(); i++) {
+				String str = "No." + (i + 1) + "\t" + Integer.toString(listScore.get(i)) + "\t" + listName.get(i) + "\t"
+						+ listDate.get(i) + "\n";
+				sorted.add(str);
+			}
+		} else {
+			for (int i = 0; i < 20; i++) {
+				String str = "No." + (i + 1) + "\t" + Integer.toString(listScore.get(i)) + "\t" + listName.get(i) + "\t"
+						+ listDate.get(i) + "\n";
+				sorted.add(str);
+			}
+		}
+		return sorted;
+	}
 }

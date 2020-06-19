@@ -2,28 +2,37 @@ package com.avion.model;
 
 import java.awt.Dimension;
 
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import com.avion.constante.Constante;
 import com.avion.meteorite.Meteorite;
 
 public class SpaceGame extends JLabel {
-	private Spacecraft vaisseau;
+	private static Spacecraft vaisseau;
+	private static JLabel label;
 
-	public SpaceGame() {
-
+	public SpaceGame(JFrame frame) {
+		label = this;
 		vaisseau = new Spacecraft();
+		startGame(frame);
+
+	}
+
+	public static void startGame(JFrame frame) {
+		label.removeAll();
 		for (Meteorite meteorite : Meteorite.meteorites) {
-			this.add(new MeteoritesMoving(meteorite, vaisseau));
+			label.add(new MeteoritesMoving(meteorite, vaisseau, frame));
 		}
-		this.setLayout(null);
+		label.setLayout(null);
 		ScrollingBackground background = new ScrollingBackground();
-		this.add(background);
-		this.add(vaisseau);
+		label.add(background);
+		label.add(vaisseau);
 		ScrollingBackground bg = new ScrollingBackground();
 		bg.setSize(new Dimension(Constante.WIDTH, Constante.HEIGHT));
-		add(bg);
-
+		label.add(bg);
+		label.repaint();
+		label.revalidate();
 	}
 
 	public Spacecraft getVaisseau() {
