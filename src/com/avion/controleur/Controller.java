@@ -32,7 +32,7 @@ public class Controller implements KeyListener {
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-
+		// not used
 	}
 
 	@Override
@@ -61,7 +61,7 @@ public class Controller implements KeyListener {
 			dir = DIRECTION.UP_LEFT;
 		} else if (hor == HORIZONTAL.LEFT && ver == VERTICAL.DOWN) {
 			dir = DIRECTION.DOWN_LEFT;
-		} else if (hor == null && ver == null) {
+		} else {
 			dir = DIRECTION.CENTER;
 		}
 	}

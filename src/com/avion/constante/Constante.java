@@ -3,7 +3,7 @@ package com.avion.constante;
 import java.awt.Color;
 import java.awt.Toolkit;
 
-public class Constante {
+public abstract class Constante {
 
 	public static final int WIDTH = 750;
 	public static final int HEIGHT = 1000;

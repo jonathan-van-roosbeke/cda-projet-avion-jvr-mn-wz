@@ -5,6 +5,10 @@ import java.util.Random;
 import com.avion.constante.NoAnimatedPictures;
 
 public class MeteoriteDeGlace extends Meteorite {
+	private static final long serialVersionUID = 1L;
+	/**
+	 * 
+	 */
 	private static int taille;
 
 	public MeteoriteDeGlace() {

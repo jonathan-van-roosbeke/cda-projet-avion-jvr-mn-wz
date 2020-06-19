@@ -10,6 +10,11 @@ import com.avion.constante.Constante;
 import com.avion.outils.Outils;
 
 public class Historique extends JFrame {
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * Generer automatiquement pour eviter les warning
+	 */
 
 	public Historique() {
 		setTitle("Record Top 20");
