@@ -4,13 +4,14 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
+import com.avion.constante.AnimatedPictures;
 import com.avion.constante.NoAnimatedPictures;
+import com.avion.model.Spacecraft;
 
 public class MakeImage {
 	private static BufferedImage image;
@@ -18,7 +19,7 @@ public class MakeImage {
 	public static BufferedImage getTheImage(NoAnimatedPictures pic) {
 
 		try {
-			image = ImageIO.read(new File(pic.getUrl()));
+			image = ImageIO.read(Spacecraft.class.getResourceAsStream(pic.getUrl()));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -35,4 +36,9 @@ public class MakeImage {
 		return new ImageIcon(resizedImg);
 	}
 
+	public static ImageIcon getTheImage(AnimatedPictures pic, int indexTab, int index) {
+		ImageIcon imgIcon = null;
+
+		return imgIcon;
+	}
 }

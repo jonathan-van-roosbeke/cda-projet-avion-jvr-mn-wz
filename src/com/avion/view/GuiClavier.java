@@ -5,18 +5,16 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import com.avion.constante.Constante;
 import com.avion.constante.NoAnimatedPictures;
+import com.avion.outils.MakeImage;
 import com.avion.outils.Outils;
 
 public class GuiClavier extends JPanel {
@@ -40,35 +38,30 @@ public class GuiClavier extends JPanel {
 			initPanelOff.setBackground(new Color(6, 6, 16));
 			initPanelOn.setLayout(new BorderLayout());
 			initPanelOn.setBackground(new Color(6, 6, 16));
-			try {
-				flecheOff = ImageIO.read(new File(NoAnimatedPictures.FLECHE_OFF.getUrl()));
-				flecheOn = ImageIO.read(new File(NoAnimatedPictures.FLECHE_ON.getUrl()));
+			flecheOff = MakeImage.getTheImage(NoAnimatedPictures.FLECHE_OFF);
+			flecheOn = MakeImage.getTheImage(NoAnimatedPictures.FLECHE_ON);
 
-				switch (i) {
-				case 0:
-					initPanelOff.add(new JLabel(Outils.imageRotation((BufferedImage) flecheOff, 0.0)));
-					initPanelOn.add(new JLabel(Outils.imageRotation((BufferedImage) flecheOn, 0.0)));
-					break;
+			switch (i) {
+			case 0:
+				initPanelOff.add(new JLabel(Outils.imageRotation((BufferedImage) flecheOff, 0.0)));
+				initPanelOn.add(new JLabel(Outils.imageRotation((BufferedImage) flecheOn, 0.0)));
+				break;
 
-				case 1:
+			case 1:
 
-					initPanelOff.add(new JLabel(Outils.imageRotation((BufferedImage) flecheOff, 90.0)));
-					initPanelOn.add(new JLabel(Outils.imageRotation((BufferedImage) flecheOn, 90.0)));
-					break;
+				initPanelOff.add(new JLabel(Outils.imageRotation((BufferedImage) flecheOff, 90.0)));
+				initPanelOn.add(new JLabel(Outils.imageRotation((BufferedImage) flecheOn, 90.0)));
+				break;
 
-				case 2:
-					initPanelOff.add(new JLabel(Outils.imageRotation((BufferedImage) flecheOff, 270.0)));
-					initPanelOn.add(new JLabel(Outils.imageRotation((BufferedImage) flecheOn, 270.0)));
-					break;
+			case 2:
+				initPanelOff.add(new JLabel(Outils.imageRotation((BufferedImage) flecheOff, 270.0)));
+				initPanelOn.add(new JLabel(Outils.imageRotation((BufferedImage) flecheOn, 270.0)));
+				break;
 
-				case 3:
-					initPanelOff.add(new JLabel(Outils.imageRotation((BufferedImage) flecheOff, 180.0)));
-					initPanelOn.add(new JLabel(Outils.imageRotation((BufferedImage) flecheOn, 180.0)));
-					break;
-				}
-
-			} catch (IOException e) {
-				e.printStackTrace();
+			case 3:
+				initPanelOff.add(new JLabel(Outils.imageRotation((BufferedImage) flecheOff, 180.0)));
+				initPanelOn.add(new JLabel(Outils.imageRotation((BufferedImage) flecheOn, 180.0)));
+				break;
 			}
 			flechesOff.add(initPanelOff);
 			flechesOn.add(initPanelOn);

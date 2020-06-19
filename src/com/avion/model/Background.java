@@ -2,7 +2,6 @@ package com.avion.model;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.io.File;
 
 import javax.imageio.ImageIO;
 
@@ -24,7 +23,7 @@ public class Background {
 		this.y = y;
 
 		try {
-			image = ImageIO.read(new File(NoAnimatedPictures.BACKGROUND.getUrl()));
+			image = ImageIO.read(Background.class.getResourceAsStream(NoAnimatedPictures.BACKGROUND.getUrl()));
 		} catch (Exception e) {
 			System.out.println(e);
 		}
