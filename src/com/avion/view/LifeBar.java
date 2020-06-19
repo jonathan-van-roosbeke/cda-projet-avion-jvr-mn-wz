@@ -13,11 +13,11 @@ import com.avion.model.MeteoritesMoving;
 
 public class LifeBar extends JPanel {
 
-	static JLabel l1;
-	static JLabel l2;
-	static JLabel l3;
-	static JLabel l4;
-	static JLabel l5;
+	private static JLabel l1;
+	private static JLabel l2;
+	private static JLabel l3;
+	private static JLabel l4;
+	private static JLabel l5;
 
 	public LifeBar() {
 		setLayout(new GridLayout(1, 5));
@@ -75,5 +75,18 @@ public class LifeBar extends JPanel {
 			l1.setIcon(new ImageIcon(NoAnimatedPictures.VIE_01_OFF.getUrl()));
 			l1.setHorizontalAlignment(SwingConstants.CENTER);
 		}
+	}
+
+	public static void initLifeBar() {
+		l1.setIcon(new ImageIcon(NoAnimatedPictures.VIE_01_ON.getUrl()));
+		l1.repaint();
+		l2.setIcon(new ImageIcon(NoAnimatedPictures.VIE_02_ON.getUrl()));
+		l2.repaint();
+		l3.setIcon(new ImageIcon(NoAnimatedPictures.VIE_03_ON.getUrl()));
+		l3.repaint();
+		l4.setIcon(new ImageIcon(NoAnimatedPictures.VIE_04_ON.getUrl()));
+		l4.repaint();
+		l5.setIcon(new ImageIcon(NoAnimatedPictures.VIE_05_ON.getUrl()));
+		l5.repaint();
 	}
 }
