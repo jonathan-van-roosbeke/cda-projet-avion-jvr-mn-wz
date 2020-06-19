@@ -26,7 +26,7 @@ public class MeteoritesMoving extends JLabel {
 	private BufferedImage image;
 	private int positionMeteoriteX;
 	private int positionMeteoriteY;
-	private static int life = 10;
+	private static int life = 100;
 	private static int score;
 	private static boolean display = true;
 	private static JLabel explosion;
