@@ -13,12 +13,13 @@ public class Historique extends JFrame {
 
 	public Historique() {
 		setTitle("Record Top 20");
-		setBounds(Constante.WIDTH, Constante.HEIGHT, 400, 400);
+		setSize(400, 400);
 		setLayout(new BorderLayout());
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		JList<String> rec = new JList<>((String[]) Outils.readFile().toArray(new String[0]));
 		JScrollPane scroll = new JScrollPane(rec);
 		getContentPane().add(scroll);
+		setLocation(Constante.CENTER_SCREEN + 150, 200);
 		setVisible(true);
 	}
 }
