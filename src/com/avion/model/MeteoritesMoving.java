@@ -115,6 +115,7 @@ public class MeteoritesMoving extends JLabel {
 					positionMeteoriteY = 0;
 					life = 10;
 					Info.setLife(life);
+					Info.setScore(0);
 				}
 			}
 			positionMeteoriteY = (randomX.nextInt(100) * -1) - 100;
