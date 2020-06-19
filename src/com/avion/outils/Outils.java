@@ -130,19 +130,32 @@ public class Outils {
 		}
 
 		Collections.sort(listScore, Collections.reverseOrder());
+//		if (listScore.size() < 20) {
+//			for (int i = 0; i < listScore.size(); i++) {
+//				String str = "No." + (i + 1) + "\t" + Integer.toString(listScore.get(i)) + "\t" + listName.get(i) + "\t"
+//						+ listDate.get(i) + "\n";
+//				sorted.add(str);
+//			}
+//		} else {
+//			for (int i = 0; i < 20; i++) {
+//				String str = "No." + (i + 1) + "\t" + Integer.toString(listScore.get(i)) + "\t" + listName.get(i) + "\t"
+//						+ listDate.get(i) + "\n";
+//				sorted.add(str);
+//			}
+//		}
+
 		if (listScore.size() < 20) {
 			for (int i = 0; i < listScore.size(); i++) {
-				String str = "No." + (i + 1) + "\t" + Integer.toString(listScore.get(i)) + "\t" + listName.get(i) + "\t"
-						+ listDate.get(i) + "\n";
+				String str = Integer.toString(listScore.get(i)) + "," + listName.get(i) + "," + listDate.get(i);
 				sorted.add(str);
 			}
 		} else {
 			for (int i = 0; i < 20; i++) {
-				String str = "No." + (i + 1) + "\t" + Integer.toString(listScore.get(i)) + "\t" + listName.get(i) + "\t"
-						+ listDate.get(i) + "\n";
+				String str = Integer.toString(listScore.get(i)) + "," + listName.get(i) + "," + listDate.get(i);
 				sorted.add(str);
 			}
 		}
+
 		return sorted;
 	}
 }

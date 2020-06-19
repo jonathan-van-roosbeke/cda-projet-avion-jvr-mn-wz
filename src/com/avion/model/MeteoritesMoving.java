@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import com.avion.collision.CalculateDistance;
+import com.avion.constante.AnimatedPictures;
 import com.avion.constante.Constante;
 import com.avion.dialog.Historique;
 import com.avion.dialog.Replay;
@@ -37,7 +38,7 @@ public class MeteoritesMoving extends JLabel {
 
 	public MeteoritesMoving(Meteorite meteorite, Spacecraft spacecraft, JFrame frame) {
 		vFrame = frame;
-		explosion = new JLabel(new ImageIcon(getClass().getResource("/explosion.gif")));
+		explosion = new JLabel(new ImageIcon(getClass().getResource(AnimatedPictures.tExplosion[0])));
 		explosion.setSize(100, 100);
 		randomX = new Random();
 		setSize(Constante.WIDTH, Constante.HEIGHT);
