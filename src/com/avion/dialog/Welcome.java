@@ -68,7 +68,8 @@ public class Welcome extends JDialog {
 		textsPanenl.add(text);
 		textsPanenl.add(saisie);
 
-		JLabel imageLabel = new JLabel(new ImageIcon(getScaledImage(new ImageIcon("ok.png").getImage(), 20, 20)));
+		JLabel imageLabel = new JLabel(new ImageIcon(
+				getScaledImage(new ImageIcon(getClass().getResource("/images/validate/ok.png")).getImage(), 20, 20)));
 		textsPanenl.add(imageLabel);
 
 		JCheckBox checkBoxClavier = new JCheckBox("Affichage clavier");

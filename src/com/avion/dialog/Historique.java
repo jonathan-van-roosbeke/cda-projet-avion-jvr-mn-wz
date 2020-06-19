@@ -14,7 +14,7 @@ public class Historique extends JFrame {
 	public Historique() {
 		setTitle("Record Top 20");
 
-		setBounds(Constante.WIDTH, Constante.HEIGHT, 600, 400);
+		setBounds(Constante.CENTER_SCREEN + 75, 200, 600, 400);
 		setLayout(new BorderLayout());
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
