@@ -5,22 +5,23 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import com.avion.constante.Constante;
 import com.avion.constante.NoAnimatedPictures;
+import com.avion.outils.MakeImage;
 import com.avion.outils.Outils;
 
 public class GuiClavier extends JPanel {
+	private static final long serialVersionUID = 1L;
 
+	/**
+	 * 
+	 */
 	private List<JPanel> flechesOff = new ArrayList<>();
 	private List<JPanel> flechesOn = new ArrayList<>();
 	private BufferedImage flecheOff;
@@ -40,35 +41,28 @@ public class GuiClavier extends JPanel {
 			initPanelOff.setBackground(new Color(6, 6, 16));
 			initPanelOn.setLayout(new BorderLayout());
 			initPanelOn.setBackground(new Color(6, 6, 16));
-			try {
-				flecheOff = ImageIO.read(new File(NoAnimatedPictures.FLECHE_OFF.getUrl()));
-				flecheOn = ImageIO.read(new File(NoAnimatedPictures.FLECHE_ON.getUrl()));
+			flecheOff = MakeImage.getTheImage(NoAnimatedPictures.FLECHE_OFF);
+			flecheOn = MakeImage.getTheImage(NoAnimatedPictures.FLECHE_ON);
 
-				switch (i) {
-				case 0:
-					initPanelOff.add(new JLabel(Outils.imageRotation((BufferedImage) flecheOff, 0.0)));
-					initPanelOn.add(new JLabel(Outils.imageRotation((BufferedImage) flecheOn, 0.0)));
-					break;
-
-				case 1:
-
-					initPanelOff.add(new JLabel(Outils.imageRotation((BufferedImage) flecheOff, 90.0)));
-					initPanelOn.add(new JLabel(Outils.imageRotation((BufferedImage) flecheOn, 90.0)));
-					break;
-
-				case 2:
-					initPanelOff.add(new JLabel(Outils.imageRotation((BufferedImage) flecheOff, 270.0)));
-					initPanelOn.add(new JLabel(Outils.imageRotation((BufferedImage) flecheOn, 270.0)));
-					break;
-
-				case 3:
-					initPanelOff.add(new JLabel(Outils.imageRotation((BufferedImage) flecheOff, 180.0)));
-					initPanelOn.add(new JLabel(Outils.imageRotation((BufferedImage) flecheOn, 180.0)));
-					break;
-				}
-
-			} catch (IOException e) {
-				e.printStackTrace();
+			switch (i) {
+			case 0:
+				initPanelOff.add(new JLabel(Outils.imageRotation(flecheOff, 0.0)));
+				initPanelOn.add(new JLabel(Outils.imageRotation(flecheOn, 0.0)));
+				break;
+			case 1:
+				initPanelOff.add(new JLabel(Outils.imageRotation(flecheOff, 90.0)));
+				initPanelOn.add(new JLabel(Outils.imageRotation(flecheOn, 90.0)));
+				break;
+			case 2:
+				initPanelOff.add(new JLabel(Outils.imageRotation(flecheOff, 270.0)));
+				initPanelOn.add(new JLabel(Outils.imageRotation(flecheOn, 270.0)));
+				break;
+			case 3:
+				initPanelOff.add(new JLabel(Outils.imageRotation(flecheOff, 180.0)));
+				initPanelOn.add(new JLabel(Outils.imageRotation(flecheOn, 180.0)));
+				break;
+			default:
+				break;
 			}
 			flechesOff.add(initPanelOff);
 			flechesOn.add(initPanelOn);
@@ -79,35 +73,12 @@ public class GuiClavier extends JPanel {
 		this.setPreferredSize(new Dimension(Constante.WIDTH, Constante.HEIGHT_CLAVIER));
 	}
 
-	public void initBouton(JPanel pPanel, String pUrl) {
-		pPanel.setLayout(new BorderLayout());
-		pPanel.add(new JLabel(new ImageIcon(pUrl)));
-	}
-
-	public List<JPanel> getFlechesOff() {
-		return flechesOff;
-	}
-
 	public JPanel getJpanelOff(int pIndex) {
 		return flechesOff.get(pIndex);
 	}
 
 	public JPanel getJpanelOn(int pIndex) {
 		return flechesOn.get(pIndex);
-	}
-
-	public void changeOffToOn(int pInt) {
-		System.out.println(this.getComponents()[3]);
-		this.remove(0);
-
-	}
-
-	public List<JPanel> getPanelsOff() {
-		return flechesOff;
-	}
-
-	public BufferedImage getFlecheOn() {
-		return flecheOn;
 	}
 
 	public BufferedImage getFlecheOff() {

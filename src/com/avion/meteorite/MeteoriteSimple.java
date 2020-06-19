@@ -3,6 +3,11 @@ package com.avion.meteorite;
 import com.avion.constante.NoAnimatedPictures;
 
 public class MeteoriteSimple extends Meteorite {
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * 
+	 */
 
 	public MeteoriteSimple() {
 		super();
@@ -30,7 +35,6 @@ public class MeteoriteSimple extends Meteorite {
 
 	@Override
 	public NoAnimatedPictures getImageUrl() {
-		// TODO Auto-generated method stub
 		return NoAnimatedPictures.METEOR_SIMPLE;
 	}
 

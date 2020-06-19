@@ -12,7 +12,14 @@ import com.avion.dialog.WelcomeController;
 import com.avion.model.MeteoritesMoving;
 
 public class Info extends JPanel {
-	JLabel name;
+	private static final long serialVersionUID = 1L;
+	/**
+	 * 
+	 */
+	private static final String NAME = "Name : " + WelcomeController.getName();
+	private static final Color BACKGOUNG_COLOR = new Color(242, 242, 242);
+	private static final Font FONT2 = new Font("Roboto", Font.BOLD, 20);
+	JLabel vName;
 	private static JLabel scoreLabel = new JLabel();
 	private static JLabel life = new JLabel();
 	private static int score;
@@ -22,31 +29,30 @@ public class Info extends JPanel {
 		setLayout(new GridLayout(1, 3));
 		setOpaque(false);
 
-		name = new JLabel();
-		name.setForeground(new Color(242, 242, 242));
-		name.setHorizontalAlignment(SwingConstants.CENTER);
-		name.setFont(new Font("Roboto", Font.BOLD, 20));
-		this.add(name);
-		name.setText("Name : " + WelcomeController.getName());
+		vName = new JLabel();
+		vName.setForeground(BACKGOUNG_COLOR);
+		vName.setHorizontalAlignment(SwingConstants.CENTER);
+		vName.setFont(FONT2);
+		this.add(vName);
+		vName.setText(NAME);
 
-		scoreLabel.setForeground(new Color(242, 242, 242));
+		scoreLabel.setForeground(BACKGOUNG_COLOR);
 		scoreLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		scoreLabel.setFont(new Font("Roboto", Font.BOLD, 20));
+		scoreLabel.setFont(FONT2);
 		this.add(scoreLabel);
-		scoreLabel.setText("Name : " + WelcomeController.getName());
+		scoreLabel.setText(NAME);
 		scoreLabel.setText("Score : 000");
 
-		life.setForeground(new Color(242, 242, 242));
+		life.setForeground(BACKGOUNG_COLOR);
 		life.setHorizontalAlignment(SwingConstants.CENTER);
-		life.setFont(new Font("Roboto", Font.BOLD, 20));
+		life.setFont(FONT2);
 		this.add(life);
-		life.setText("Name : " + WelcomeController.getName());
+		life.setText(NAME);
 		life.setText("Life : " + MeteoritesMoving.getLife());
 	}
 
-	public static void setLife(int nb) {
-		nb = MeteoritesMoving.getLife();
-		Info.life.setText("Life : " + Integer.toString(nb));
+	public static void setLife() {
+		Info.life.setText("Life : " + Integer.toString(MeteoritesMoving.getLife()));
 	}
 
 	public static void setScore(int nb) {
@@ -54,7 +60,7 @@ public class Info extends JPanel {
 		int strLen = str.length();
 		if (strLen < 3) {
 			while (strLen < 3) {
-				StringBuffer sb = new StringBuffer();
+				StringBuilder sb = new StringBuilder();
 				sb.append("0").append(str);
 				str = sb.toString();
 				strLen = str.length();

@@ -5,7 +5,10 @@ import java.awt.Point;
 import com.avion.constante.Constante;
 import com.avion.model.Spacecraft;
 
-public class CalculateDistance {
+public abstract class CalculateDistance {
+	private CalculateDistance() {
+
+	}
 
 	public static int calculDistance(int meteoriteX, int meteoriteY, int meteoriteTaille, Spacecraft spacecraft) {
 		Point spacecraftPoint = new Point(spacecraft.getX() + (Constante.VAISSEAU_WIDTH) / 2,

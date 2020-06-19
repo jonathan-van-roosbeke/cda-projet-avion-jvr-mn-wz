@@ -32,7 +32,7 @@ public class Controller implements KeyListener {
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-
+		// not used
 	}
 
 	@Override
@@ -61,7 +61,7 @@ public class Controller implements KeyListener {
 			dir = DIRECTION.UP_LEFT;
 		} else if (hor == HORIZONTAL.LEFT && ver == VERTICAL.DOWN) {
 			dir = DIRECTION.DOWN_LEFT;
-		} else if (hor == null && ver == null) {
+		} else {
 			dir = DIRECTION.CENTER;
 		}
 	}
@@ -230,20 +230,19 @@ public class Controller implements KeyListener {
 			vaisseau.setLocation(pos);
 			vaisseau.validate();
 		}
-
 	}
 
 	private void changeImageDirection(int pIndex) {
 		vaisseau.getVaisseau().removeAll();
 		vaisseau.revalidate();
-		vaisseau.getVaisseau().setIcon(new ImageIcon(AnimatedPictures.tVaisseau[pIndex]));
+		vaisseau.getVaisseau().setIcon(new ImageIcon(getClass().getResource(AnimatedPictures.tVaisseau[pIndex])));
 		vaisseau.repaint();
 	}
 
 	private void resetImageDirection() {
 		vaisseau.getVaisseau().removeAll();
 		vaisseau.revalidate();
-		vaisseau.getVaisseau().setIcon(new ImageIcon(AnimatedPictures.tVaisseau[0]));
+		vaisseau.getVaisseau().setIcon(new ImageIcon(getClass().getResource(AnimatedPictures.tVaisseau[0])));
 		vaisseau.repaint();
 	}
 }

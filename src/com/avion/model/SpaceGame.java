@@ -9,6 +9,10 @@ import com.avion.constante.Constante;
 import com.avion.meteorite.Meteorite;
 
 public class SpaceGame extends JLabel {
+	private static final long serialVersionUID = 1L;
+	/**
+	 * 
+	 */
 	private static Spacecraft vaisseau;
 	private static JLabel label;
 

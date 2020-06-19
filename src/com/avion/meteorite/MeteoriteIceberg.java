@@ -3,6 +3,11 @@ package com.avion.meteorite;
 import com.avion.constante.NoAnimatedPictures;
 
 public class MeteoriteIceberg extends Meteorite {
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * 
+	 */
 
 	public MeteoriteIceberg() {
 		super();
@@ -30,7 +35,6 @@ public class MeteoriteIceberg extends Meteorite {
 
 	@Override
 	public NoAnimatedPictures getImageUrl() {
-		// TODO Auto-generated method stub
 		return NoAnimatedPictures.METEOR_ICEBERG;
 	}
 }

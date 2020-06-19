@@ -28,6 +28,12 @@ import com.avion.constante.Constante;
 
 public class Welcome extends JDialog {
 
+	private static final long serialVersionUID = 1L;
+	/**
+	 * Generer automatiquement pour eviter les warning
+	 */
+	private static final Font FONT3 = new Font("Roboto", Font.BOLD, 20);
+	private static final Font FONT2 = new Font("Roboto", Font.ITALIC, 12);
 	public static boolean isChecked;
 
 	public Welcome() {
@@ -54,7 +60,7 @@ public class Welcome extends JDialog {
 		textsPanenl.setBackground(Constante.BACKGROUND_COLOR);
 
 		JLabel text = new JLabel("Ton nom : ");
-		text.setFont(new Font("Roboto", Font.BOLD, 20));
+		text.setFont(FONT3);
 
 		JLabel error = new JLabel();
 		JTextField saisie = new JTextField(6);
@@ -62,13 +68,14 @@ public class Welcome extends JDialog {
 		text.setForeground(Constante.TEXT_COLOR);
 
 		error.setForeground(Color.RED);
-		error.setFont(new Font("Roboto", Font.ITALIC, 12));
+		error.setFont(FONT2);
 		error.setHorizontalAlignment(JLabel.CENTER);
 
 		textsPanenl.add(text);
 		textsPanenl.add(saisie);
 
-		JLabel imageLabel = new JLabel(new ImageIcon(getScaledImage(new ImageIcon("ok.png").getImage(), 20, 20)));
+		JLabel imageLabel = new JLabel(new ImageIcon(
+				getScaledImage(new ImageIcon(getClass().getResource("/images/validate/ok.png")).getImage(), 20, 20)));
 		textsPanenl.add(imageLabel);
 
 		JCheckBox checkBoxClavier = new JCheckBox("Affichage clavier");
@@ -85,12 +92,7 @@ public class Welcome extends JDialog {
 		checkBoxClavier.addItemListener(new ItemListener() {
 			@Override
 			public void itemStateChanged(ItemEvent e) {
-				if (e.getStateChange() == ItemEvent.SELECTED) {
-					isChecked = true;
-
-				} else {
-					isChecked = false;
-				}
+				isChecked = e.getStateChange() == ItemEvent.SELECTED;
 			}
 		});
 

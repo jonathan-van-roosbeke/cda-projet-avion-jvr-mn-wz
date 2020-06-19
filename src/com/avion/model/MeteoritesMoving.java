@@ -22,6 +22,10 @@ import com.avion.view.Info;
 import com.avion.view.LifeBar;
 
 public class MeteoritesMoving extends JLabel {
+	private static final long serialVersionUID = 1L;
+	/**
+	 * 
+	 */
 	private Random randomX;
 	private BufferedImage image;
 	private int positionMeteoriteX;
@@ -38,7 +42,7 @@ public class MeteoritesMoving extends JLabel {
 
 	public MeteoritesMoving(Meteorite meteorite, Spacecraft spacecraft, JFrame frame) {
 		vFrame = frame;
-		explosion = new JLabel(new ImageIcon(AnimatedPictures.tExplosion));
+		explosion = new JLabel(new ImageIcon(getClass().getResource(AnimatedPictures.tExplosion[0])));
 		explosion.setSize(100, 100);
 		randomX = new Random();
 		setSize(Constante.WIDTH, Constante.HEIGHT);
@@ -83,7 +87,7 @@ public class MeteoritesMoving extends JLabel {
 		}
 		if (CalculateDistance.isCollided(positionMeteoriteX, positionMeteoriteY, meteorite.getTaille(), spacecraft)) {
 			life -= meteorite.getDegat();
-			Info.setLife(life);
+			Info.setLife();
 			explosion.setLocation(spacecraft.getX(), spacecraft.getY());
 			add(explosion);
 			revalidate();
@@ -122,6 +126,8 @@ public class MeteoritesMoving extends JLabel {
 					Info.setScore(0);
 					LifeBar.setLifeBar(life);
 					LifeBar.initLifeBar();
+					Info.setLife();
+
 				}
 			}
 			positionMeteoriteY = (randomX.nextInt(100) * -1) - 100;

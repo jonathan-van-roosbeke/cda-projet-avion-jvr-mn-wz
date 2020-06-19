@@ -7,7 +7,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.RandomAccessFile;
@@ -16,10 +15,14 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 
-public class Outils {
+public abstract class Outils {
+	private Outils() {
+
+	}
 
 	public static ImageIcon imageRotation(BufferedImage image, Double degrees) {
 		// Calculate the new size of the image based on the angle of rotaion
@@ -73,6 +76,7 @@ public class Outils {
 			randomFile.seek(fileLength);
 			randomFile.writeBytes(str);
 			randomFile.close();
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
@@ -91,10 +95,8 @@ public class Outils {
 		return dtf.format(LocalDateTime.now());
 	}
 
-	public static ArrayList readFile() {
+	public static List<String> readFile() {
 		String path = "temp/record.txt";
-
-		FileReader fr = null;
 
 		ArrayList<String> listName = new ArrayList<String>();
 		ArrayList<Integer> listScore = new ArrayList<Integer>();
@@ -130,19 +132,19 @@ public class Outils {
 		}
 
 		Collections.sort(listScore, Collections.reverseOrder());
+
 		if (listScore.size() < 20) {
 			for (int i = 0; i < listScore.size(); i++) {
-				String str = "No." + (i + 1) + "\t" + Integer.toString(listScore.get(i)) + "\t" + listName.get(i) + "\t"
-						+ listDate.get(i) + "\n";
+				String str = Integer.toString(listScore.get(i)) + "," + listName.get(i) + "," + listDate.get(i);
 				sorted.add(str);
 			}
 		} else {
 			for (int i = 0; i < 20; i++) {
-				String str = "No." + (i + 1) + "\t" + Integer.toString(listScore.get(i)) + "\t" + listName.get(i) + "\t"
-						+ listDate.get(i) + "\n";
+				String str = Integer.toString(listScore.get(i)) + "," + listName.get(i) + "," + listDate.get(i);
 				sorted.add(str);
 			}
 		}
+
 		return sorted;
 	}
 }

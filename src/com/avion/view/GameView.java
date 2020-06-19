@@ -2,8 +2,8 @@ package com.avion.view;
 
 import java.awt.BorderLayout;
 import java.awt.Image;
-import java.awt.Toolkit;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 import com.avion.constante.Constante;
@@ -14,14 +14,20 @@ import com.avion.model.SpaceGame;
 
 public class GameView extends JFrame {
 
-	private Image img;
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * 
+	 */
 
 	public GameView() {
 		init();
 	}
 
 	public void init() {
-		Image im = Toolkit.getDefaultToolkit().getImage(NoAnimatedPictures.METEOR_SIMPLE.getUrl());
+		Image im = null;
+		im = new ImageIcon(getClass().getResource(NoAnimatedPictures.METEOR_SIMPLE.getUrl())).getImage();
+
 		setIconImage(im);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setBounds(Constante.CENTER_SCREEN, 0, Constante.WIDTH, Constante.HEIGHT);
@@ -42,9 +48,6 @@ public class GameView extends JFrame {
 		if (Welcome.isChecked) {
 			this.getContentPane().add(clavier, BorderLayout.SOUTH);
 		}
-
-//		new Replay(gameView);
-
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 

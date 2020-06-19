@@ -2,12 +2,12 @@ package com.avion.model;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.io.File;
 
-import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 
 import com.avion.constante.Constante;
 import com.avion.constante.NoAnimatedPictures;
+import com.avion.outils.MakeImage;
 
 public class Background {
 	private BufferedImage image;
@@ -22,25 +22,17 @@ public class Background {
 	public Background(int x, int y) {
 		this.x = x;
 		this.y = y;
-
-		try {
-			image = ImageIO.read(new File(NoAnimatedPictures.BACKGROUND.getUrl()));
-		} catch (Exception e) {
-			System.out.println(e);
-		}
-
+		image = MakeImage.convertToBufferedImage(
+				new ImageIcon(getClass().getResource(NoAnimatedPictures.BACKGROUND.getUrl())).getImage());
 	}
 
 	public void draw(Graphics window) {
 		// Dessine l'image
 		window.drawImage(image, getX(), getY(), image.getWidth(), image.getHeight(), null);
-
 		// Déplacement en y
 		this.y += Constante.BACKGROUD_SPEED;
-
 		// Check si l'image est sorti du cadre
 		if (this.y >= image.getHeight()) {
-
 			// Si c'est le cas alligner le bas de l'image
 			// avec le haut de l'image du bg
 			this.y = this.y - image.getHeight() * 2;
