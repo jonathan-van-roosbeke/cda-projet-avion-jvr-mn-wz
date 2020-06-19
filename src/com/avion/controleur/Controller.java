@@ -3,9 +3,7 @@ package com.avion.controleur;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
@@ -237,24 +235,14 @@ public class Controller implements KeyListener {
 	private void changeImageDirection(int pIndex) {
 		vaisseau.getVaisseau().removeAll();
 		vaisseau.revalidate();
-		try {
-			vaisseau.getVaisseau().setIcon(new ImageIcon(
-					ImageIO.read(Spacecraft.class.getResourceAsStream(AnimatedPictures.tVaisseau[pIndex]))));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		vaisseau.getVaisseau().setIcon(new ImageIcon(getClass().getResource(AnimatedPictures.tVaisseau[pIndex])));
 		vaisseau.repaint();
 	}
 
 	private void resetImageDirection() {
 		vaisseau.getVaisseau().removeAll();
 		vaisseau.revalidate();
-		try {
-			vaisseau.getVaisseau().setIcon(
-					new ImageIcon(ImageIO.read(Spacecraft.class.getResourceAsStream(AnimatedPictures.tVaisseau[0]))));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		vaisseau.getVaisseau().setIcon(new ImageIcon(getClass().getResource(AnimatedPictures.tVaisseau[0])));
 		vaisseau.repaint();
 	}
 }

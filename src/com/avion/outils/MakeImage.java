@@ -9,7 +9,6 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
-import com.avion.constante.AnimatedPictures;
 import com.avion.constante.NoAnimatedPictures;
 import com.avion.model.Spacecraft;
 
@@ -36,9 +35,12 @@ public class MakeImage {
 		return new ImageIcon(resizedImg);
 	}
 
-	public static ImageIcon getTheImage(AnimatedPictures pic, int indexTab, int index) {
-		ImageIcon imgIcon = null;
-
-		return imgIcon;
+	public static BufferedImage convertToBufferedImage(Image image) {
+		BufferedImage newImage = new BufferedImage(image.getWidth(null), image.getHeight(null),
+				BufferedImage.TYPE_INT_ARGB);
+		Graphics2D g = newImage.createGraphics();
+		g.drawImage(image, 0, 0, null);
+		g.dispose();
+		return newImage;
 	}
 }
