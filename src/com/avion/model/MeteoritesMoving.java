@@ -13,9 +13,11 @@ import com.avion.constante.AnimatedPictures;
 import com.avion.constante.Constante;
 import com.avion.dialog.Historique;
 import com.avion.dialog.Replay;
+import com.avion.dialog.WelcomeController;
 import com.avion.meteorite.Meteorite;
 import com.avion.meteorite.MeteoriteDeGlace;
 import com.avion.meteorite.MeteoriteZigzag;
+import com.avion.outils.Outils;
 import com.avion.view.Info;
 import com.avion.view.LifeBar;
 
@@ -110,12 +112,16 @@ public class MeteoritesMoving extends JLabel {
 				counter++;
 				counter %= 5;
 				if (counter == 1) {
+					Outils.writeFile(WelcomeController.getName() + ";");
+					Outils.writeFile(Integer.toString(Info.getScore()) + ";");
+					Outils.writeFile(Outils.getDate() + "\n");
 					Replay replay = new Replay(vFrame);
 					continuer = replay.getResult() == 0;
 					positionMeteoriteY = 0;
 					life = 10;
 					Info.setLife(life);
 					Info.setScore(0);
+					LifeBar.setLifeBar(life);
 				}
 			}
 			positionMeteoriteY = (randomX.nextInt(100) * -1) - 100;
