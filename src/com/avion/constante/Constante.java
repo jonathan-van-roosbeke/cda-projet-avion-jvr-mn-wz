@@ -24,7 +24,7 @@ public class Constante {
 	public static final int HEIGHT_CLAVIER = 130;
 
 	public enum DIRECTION {
-		UP, RIGHT, DOWN, LEFT, UP_RIGHT, DOWN_RIGHT, UP_LEFT, DOWN_LEFT
+		UP, RIGHT, DOWN, LEFT, UP_RIGHT, DOWN_RIGHT, UP_LEFT, DOWN_LEFT, CENTER
 	}
 
 	public enum HORIZONTAL {

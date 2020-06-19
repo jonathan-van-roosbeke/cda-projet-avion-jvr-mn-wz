@@ -118,9 +118,10 @@ public class MeteoritesMoving extends JLabel {
 					Replay replay = new Replay(vFrame);
 					continuer = replay.getResult() == 0;
 					positionMeteoriteY = 0;
-					life = 10;
-					Info.setLife(life);
+					life = 100;
+					Info.setScore(0);
 					LifeBar.setLifeBar(life);
+					LifeBar.initLifeBar();
 				}
 			}
 			positionMeteoriteY = (randomX.nextInt(100) * -1) - 100;

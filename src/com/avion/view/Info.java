@@ -13,8 +13,8 @@ import com.avion.model.MeteoritesMoving;
 
 public class Info extends JPanel {
 	JLabel name;
-	private static JLabel scoreLabel;
-	private static JLabel life;
+	private static JLabel scoreLabel = new JLabel();
+	private static JLabel life = new JLabel();
 	private static int score;
 
 	public Info() {
@@ -29,7 +29,6 @@ public class Info extends JPanel {
 		this.add(name);
 		name.setText("Name : " + WelcomeController.getName());
 
-		scoreLabel = new JLabel();
 		scoreLabel.setForeground(new Color(242, 242, 242));
 		scoreLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		scoreLabel.setFont(new Font("Roboto", Font.BOLD, 20));
@@ -37,7 +36,6 @@ public class Info extends JPanel {
 		scoreLabel.setText("Name : " + WelcomeController.getName());
 		scoreLabel.setText("Score : 000");
 
-		life = new JLabel();
 		life.setForeground(new Color(242, 242, 242));
 		life.setHorizontalAlignment(SwingConstants.CENTER);
 		life.setFont(new Font("Roboto", Font.BOLD, 20));

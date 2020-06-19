@@ -37,6 +37,36 @@ public class Controller implements KeyListener {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
+		switchKey(e);
+
+		testDir();
+
+		move(dir);
+	}
+
+	public void testDir() {
+		if (ver == null && hor == HORIZONTAL.RIGHT) {
+			dir = DIRECTION.RIGHT;
+		} else if (ver == null && hor == HORIZONTAL.LEFT) {
+			dir = DIRECTION.LEFT;
+		} else if (hor == null && ver == VERTICAL.UP) {
+			dir = DIRECTION.UP;
+		} else if (hor == null && ver == VERTICAL.DOWN) {
+			dir = DIRECTION.DOWN;
+		} else if (hor == HORIZONTAL.RIGHT && ver == VERTICAL.UP) {
+			dir = DIRECTION.UP_RIGHT;
+		} else if (hor == HORIZONTAL.RIGHT && ver == VERTICAL.DOWN) {
+			dir = DIRECTION.DOWN_RIGHT;
+		} else if (hor == HORIZONTAL.LEFT && ver == VERTICAL.UP) {
+			dir = DIRECTION.UP_LEFT;
+		} else if (hor == HORIZONTAL.LEFT && ver == VERTICAL.DOWN) {
+			dir = DIRECTION.DOWN_LEFT;
+		} else if (hor == null && ver == null) {
+			dir = DIRECTION.CENTER;
+		}
+	}
+
+	public void switchKey(KeyEvent e) {
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_UP:
 			if (Welcome.isChecked) {
@@ -75,26 +105,6 @@ public class Controller implements KeyListener {
 		default:
 			break;
 		}
-
-		if (ver == null && hor == HORIZONTAL.RIGHT) {
-			dir = DIRECTION.RIGHT;
-		} else if (ver == null && hor == HORIZONTAL.LEFT) {
-			dir = DIRECTION.LEFT;
-		} else if (hor == null && ver == VERTICAL.UP) {
-			dir = DIRECTION.UP;
-		} else if (hor == null && ver == VERTICAL.DOWN) {
-			dir = DIRECTION.DOWN;
-		} else if (hor == HORIZONTAL.RIGHT && ver == VERTICAL.UP) {
-			dir = DIRECTION.UP_RIGHT;
-		} else if (hor == HORIZONTAL.RIGHT && ver == VERTICAL.DOWN) {
-			dir = DIRECTION.DOWN_RIGHT;
-		} else if (hor == HORIZONTAL.LEFT && ver == VERTICAL.UP) {
-			dir = DIRECTION.UP_LEFT;
-		} else if (hor == HORIZONTAL.LEFT && ver == VERTICAL.DOWN) {
-			dir = DIRECTION.DOWN_LEFT;
-		}
-
-		move(dir);
 	}
 
 	@Override
@@ -163,6 +173,8 @@ public class Controller implements KeyListener {
 		case 3:
 			clavier.getJpanelOff(pIndex).add(new JLabel(Outils.imageRotation(clavier.getFlecheOff(), 180.0)));
 			break;
+		default:
+			break;
 
 		}
 		clavier.getJpanelOff(pIndex).repaint();
@@ -202,7 +214,6 @@ public class Controller implements KeyListener {
 			break;
 		default:
 			break;
-
 		}
 		if (Welcome.isChecked) {
 			if (pos.x >= Constante.WIDTH - vaisseau.getWidth() || pos.x < 0
